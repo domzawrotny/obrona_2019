@@ -51,14 +51,14 @@ INSERT INTO faculty (faculty_name, faculty_abbreviation) VALUES
 #
 
 
-INSERT INTO user_login (login, password, permissions_id) VALUES
-  ('dzawrotny','$2y$10$uax8iNWESc0uCt/d910TYu7Df78xvYZ75vM8DuJ07VDufo.c0vJhm',(SELECT permissions_id FROM user_permissions WHERE permissions_type='student')), -- Pa$$w.rd - $2y$10$uax8iNWESc0uCt/d910TYu7Df78xvYZ75vM8DuJ07VDufo.c0vJhm
-  ('dolbrys','$2y$10$J8a5.Sojh01hylmQvdXN1.aeBv7w.PmT4BBxMfl2bzqrjuUohMEpm',(SELECT permissions_id FROM user_permissions WHERE permissions_type='student')), -- h4$L.
-  ('ppochanke','$2y$10$ZsLMdFhrmWEpvZhY1Q4qqeqFZKh8Fvw4HW8BCpa2NFoxXZV491V6e',(SELECT permissions_id FROM user_permissions WHERE permissions_type='student')), -- 21abc!@#37
-  ('mraczkowski','$2y$10$G4XcXZZfP.qWjo2sO1deUuetdCM13lxf9esbWEHxruVkXWl1Jl5lu',(SELECT permissions_id FROM user_permissions WHERE permissions_type='student')), -- v4ry$str0ngP4ssw.Rd
-  ('admin','$2y$10$DPDCc9u5UiU.hmmljFWvMe98ZTQfQIGj43eK3XsQ0hleD.fn.Yk4e',(SELECT permissions_id FROM user_permissions WHERE permissions_type='admin')), -- admin - $2y$10$DPDCc9u5UiU.hmmljFWvMe98ZTQfQIGj43eK3XsQ0hleD.fn.Yk4e
-  ('kwojtylak','$2y$10$1XfKv8nKKTZZD1mD44CdyOquaZBL6WPUPP3NSOh8QvxOL2E5prXnG',(SELECT permissions_id FROM user_permissions WHERE permissions_type='lecturer')), -- Abc123! - $2y$10$1XfKv8nKKTZZD1mD44CdyOquaZBL6WPUPP3NSOh8QvxOL2E5prXnG
-  ('gbale','$2y$10$ohomh6sYfY/zG3RhOq1AvepzrSsqN4ICueRhAi8txICzCan/6Jc7e',(SELECT permissions_id FROM user_permissions WHERE permissions_type='lecturer')); -- H@sL0
+INSERT INTO user_login (login, password, permissions_id, email_address) VALUES
+  ('dzawrotny','$2y$10$uax8iNWESc0uCt/d910TYu7Df78xvYZ75vM8DuJ07VDufo.c0vJhm',(SELECT permissions_id FROM user_permissions WHERE permissions_type='student'),'dzawrotny@uz.zgora.pl'), -- Pa$$w.rd - $2y$10$uax8iNWESc0uCt/d910TYu7Df78xvYZ75vM8DuJ07VDufo.c0vJhm
+  ('dolbrys','$2y$10$J8a5.Sojh01hylmQvdXN1.aeBv7w.PmT4BBxMfl2bzqrjuUohMEpm',(SELECT permissions_id FROM user_permissions WHERE permissions_type='student'),'dolbrys@uz.zgora.pl'), -- h4$L.
+  ('ppochanke','$2y$10$ZsLMdFhrmWEpvZhY1Q4qqeqFZKh8Fvw4HW8BCpa2NFoxXZV491V6e',(SELECT permissions_id FROM user_permissions WHERE permissions_type='student'),'ppochanke@uz.zgora.pl'), -- 21abc!@#37
+  ('mraczkowski','$2y$10$G4XcXZZfP.qWjo2sO1deUuetdCM13lxf9esbWEHxruVkXWl1Jl5lu',(SELECT permissions_id FROM user_permissions WHERE permissions_type='student'),'mraczkowski@uz.zgora.pl'), -- v4ry$str0ngP4ssw.Rd
+  ('admin','$2y$10$DPDCc9u5UiU.hmmljFWvMe98ZTQfQIGj43eK3XsQ0hleD.fn.Yk4e',(SELECT permissions_id FROM user_permissions WHERE permissions_type='admin'),'admin@uz.zgora.pl'), -- admin - $2y$10$DPDCc9u5UiU.hmmljFWvMe98ZTQfQIGj43eK3XsQ0hleD.fn.Yk4e
+  ('kwojtylak','$2y$10$1XfKv8nKKTZZD1mD44CdyOquaZBL6WPUPP3NSOh8QvxOL2E5prXnG',(SELECT permissions_id FROM user_permissions WHERE permissions_type='lecturer'),'kwojtylak@uz.zgora.pl'), -- Abc123! - $2y$10$1XfKv8nKKTZZD1mD44CdyOquaZBL6WPUPP3NSOh8QvxOL2E5prXnG
+  ('gbale','$2y$10$ohomh6sYfY/zG3RhOq1AvepzrSsqN4ICueRhAi8txICzCan/6Jc7e',(SELECT permissions_id FROM user_permissions WHERE permissions_type='lecturer'),'gbale@uz.zgora.pl'); -- H@sL0
 
 
 INSERT INTO student (surname, firstname, login_id, pesel,  city, street, house_no, birth_date) VALUES

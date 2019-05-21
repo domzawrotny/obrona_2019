@@ -62,6 +62,7 @@ CREATE TABLE `USER_LOGIN`
  `login`          VARCHAR(20) NOT NULL ,
  `password`       VARCHAR(60) NOT NULL ,
  `permissions_id` INT NOT NULL ,
+ `email_address`  VARCHAR(100) NOT NULL ,
 
 PRIMARY KEY (`login_id`),
 KEY `fkIdx_28` (`permissions_id`),
