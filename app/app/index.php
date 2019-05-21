@@ -3,7 +3,7 @@
 session_start();
 
 if ((isSet($_SESSION['signed_in'])) && ($_SESSION['signed_in'] == true)) {
-    require "check_permissions.php";
+    header('Location: main_site.php');
     exit();
 }
 ?>
