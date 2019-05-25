@@ -1,3 +1,11 @@
+    
+<?php
+    session_start();
+    if ((isSet($_SESSION['signed_in'])) && ($_SESSION['signed_in'] == true)) {
+        header('Location: main_site.php');
+        exit();
+    }
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -24,6 +32,9 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+
+    <!-- Notifs -->
+    <script src="assets/js/demo.js"></script>
 
 </head>
 <body>
@@ -98,13 +109,10 @@
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <button type="submit" class="btn btn-info btn-fill pull-right">Zaloguj</button>
+                                                    
                                                 </div>
                                             </div>
-                                            <?php
-                                            if (isSet($_SESSION['error'])) {
-                                                echo "<p>".$_SESSION['error']."<p/>";
-                                            }
-                                            ?>
+                                            
                                             
                                         </div>
                                         </form>
@@ -150,8 +158,37 @@
     <!--  Notifications Plugin    -->
     <script src="assets/js/bootstrap-notify.js"></script>
 
-    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-	<script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
+    <!-- Light Bootstrap Table Core javascript and methods  -->
+    <script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
+
+     <!-- Notifications -->
+	<script src="assets/js/demo.js"></script>
+
+    <?php
+        if (isSet($_SESSION['error'])) {
+            ?>
+            <script type="text/javascript">
+            $(document).ready(function(){
+        
+                demo.initChartist();
+        
+                $.notify({
+                    icon: 'pe-7s-close-circle',
+                    message: "<?php echo $_SESSION['error'] ?>"
+                },{
+                    type: 'danger',
+                    timer: 4000
+                });
+        
+            });
+        </script> 
+        <?php
+        }
+    ?>
+    
+  
 
 
+
+    
 </html>
