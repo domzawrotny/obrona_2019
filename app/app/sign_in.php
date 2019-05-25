@@ -39,13 +39,13 @@
                     header('Location: main_site.php');
                 }
                 else {
-                    $_SESSION['error'] = '<span style="color:red">Incorrect user or password!</span>';
+                    $_SESSION['error'] = 'Incorrect user or password!';
                     $result->free();
                     header('Location: index.php');
                 }
             }
             else {
-                $_SESSION['error'] = '<span style="color:red">Incorrect user or password!</span>';
+                $_SESSION['error'] = 'Incorrect user or password!';
                 $result->free();
                 header('Location: index.php');
             }
