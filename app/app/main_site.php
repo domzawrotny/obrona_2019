@@ -2,7 +2,7 @@
     session_start();
     #if (!isSet($_SESSION['signed_in']) || ($_SESSION['permissions']!=2) ) {
     if (!isSet($_SESSION['signed_in'])) {
-        header('Location: ../index.php');
+        header('Location: index.php');
         exit();
     }
 ?>
@@ -23,6 +23,14 @@
     <div id="sign_out">
         <a href="sign_out.php">Sign out</a>
     </div>
+    <?php
+        if (($_SESSION['permissions']==1)) {
+            ?>
+            <a href="user_management.php">Zarządzaj użyszkodnikami</a>
+            <?php
+        }
+
+    ?>
 </div>
 
 </body>
