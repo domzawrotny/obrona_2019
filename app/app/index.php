@@ -59,8 +59,8 @@
             <ul class="nav">
                 <li class="active">
                     <a href="#">
-                        <i class="pe-7s-menu"></i>
-                        <p>Strona Główna</p>
+                        <i class="pe-7s-key"></i>
+                        <p>Zaloguj się</p>
                     </a>
                 </li>
 
@@ -72,13 +72,7 @@
         <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">PLED - Planer Egzaminów Dyplomowych</a>
+                    <a class="navbar-brand">PLED - Planer Egzaminów Dyplomowych</a>
                 </div>
             </div>
         </nav>
