@@ -143,165 +143,44 @@
 
 
         <div class="content">
-        <div class="container-fluid">
+            <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
+                <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Data i miejsce</h4>
+                                <h4 class="title">Zaloguj się</h4>
                             </div>
-                            <div class="content">
-                                 <form>
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <input type="Date" class="form-control" placeholder="Wybierz datę" value="2005-04-02">
+                                    <div class ="content">
+                                    <form action="sign_in.php" method="post">
+                                        <div class="row">                                            
+                                             <div class="col-md-3">                                                                         
+                                                <label>Login</label>
+                                                <input type="text" name="login" class="form-control" placeholder="Wpisz..." size="30">
+                                            </div>  
+                                        </div>
+                                        <div class="row">                          
+                                            <div class="col-md-3">
+                                                <label for="password">Hasło</label>
+                                                <input type="password" class="form-control" name="user_password" placeholder="Wpisz..." size="30">
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
-                                            <button type="submit" class="btn btn-info btn-fill btn-block pull-right">Wybierz</button>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                                <label>Wydział</label>
-                                                <div class="dropdown">
-                                                <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Wydział Akrobatyki i Dmuchania Ryżu</button>
-                                                        <ul class="dropdown-menu min-width: 100%">
-                                                            <li><a href="#">Wydział Nawijania Makaronu</a></li>
-                                                            <li><a href="#">Wydział Zarządzania i Marketingu</a></li>
-                                                        </ul>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <button type="submit" class="btn btn-info btn-fill pull-right">Zaloguj</button>
+                                                    
                                                 </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                                <label>Instytut</label>
-                                                <div class="dropdown">
-                                                <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Instytut Skoków w dal</button>
-                                                        <ul class="dropdown-menu min-width: 100%">
-                                                            <li><a href="#">Instytut Skoków w Bok</a></li>
-                                                            <li><a href="#">Instytut Risotto</a></li>
-                                                        </ul>
-                                                </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                                <label>Budynek</label>
-                                                <div class="dropdown">
-                                                <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">A-0</button>
-                                                        <ul class="dropdown-menu min-width: 100%">
-                                                            <li><a href="#">A-2</a></li>
-                                                            <li><a href="#">A-29</a></li>
-                                                        </ul>
-                                                </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label>Sala</label>
-                                            <div class="dropdown">
-                                            <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">02</button>
-                                                    <ul class="dropdown-menu min-width: 100%">
-                                                        <li><a href="#">02</a></li>
-                                                        <li><a href="#">04</a></li>
-                                                        <li><a href="#">05</a></li>
-                                                        <li class="divider"></li>
-                                                        <li><a href="#">21</a></li>
-                                                        <li><a href="#">37</a></li>
-                                                    </ul>
                                             </div>
+                                            
+                                            
                                         </div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </form>
-                            </div>
-                        </div>
+                                        </form>
+                                </div>                                                   
+                        </div>                    
                     </div>
-                    
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Wykaz egzaminów</h4>
-                                <p class="category">Dla dnia XX.XX.XXXX</p>
-                            </div>
-                            <div class="content table-responsive table-full-width">
-                                <table class="table table-hover table-striped">
-                                    <thead>
-                                        <th>Godz.</th>
-                                    	<th>Przewodniczący</th>
-                                    	<th>Promotor</th>
-                                    	<th>Recenzent</th>
-                                        <th>Dyplomant</th>
-                                        <th>Edycja</th>
-                                        <th>Usuwanie</th>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                        	<td>7:00</td>
-                                        	<td>Prof. dr hab. Ambroży Kleks</td>
-                                        	<td>Dr Krzysztof Wstrząs</td>
-                                        	<td>Dr Grzegorz Domek</td>
-                                            <td>Karol Papież</td>                                            
-                                            <td><a href="#">Edytuj</a></td>
-                                            <td><a href="#">Usuń</a></td>
-                                        </tr>
-                                        <tr>
-                                        	<td>7:15</td>
-                                        	<td>Prof. dr hab. Ambroży Kleks</td>
-                                        	<td>Dr Krzysztof Wstrząs</td>
-                                        	<td>Dr Grzegorz Domek</td>
-                                            <td>Paweł Jumper</td>
-                                            <td><a href="#">Edytuj</a></td>
-                                            <td><a href="#">Usuń</a></td>
-                                        </tr>
-                                        <tr>
-                                        	<td>7:30</td>
-                                        	<td>Prof. dr hab. Ambroży Kleks</td>
-                                        	<td>Dr Krzysztof Wstrząs</td>
-                                        	<td>Dr Grzegorz Domek</td>
-                                            <td>Sasza Szara</td>
-                                            <td><a href="#">Edytuj</a></td>
-                                            <td><a href="#">Usuń</a></td>
-                                        </tr>
-                                        <tr>
-                                        	<td>7:45</td>
-                                        	<td>Prof. dr hab. Jan Tadeusz Stanisławski</td>
-                                        	<td>Dr Paweł Jubicz</td>
-                                        	<td>Dr Michalina Quinn</td>
-                                            <td>Jacek Kaczyński</td>
-                                            <td><a href="#">Edytuj</a></td>
-                                            <td><a href="#">Usuń</a></td>
-                                        </tr>
-                                        <tr>
-                                        	<td>8:00</td>
-                                        	<td>Prof. dr hab. Jan Tadeusz Stanisławski</td>
-                                        	<td>Dr Paweł Jubicz</td>
-                                        	<td>Dr Michalina Quinn</td>
-                                            <td>Placek Kaczyński</td>
-                                            <td><a href="#">Edytuj</a></td>
-                                            <td><a href="#">Usuń</a></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div class="content">
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                        </div>
-                                        <div class="col-md-2">
-                                        <button type="submit" class="btn btn-info btn-fill btn-block">Nowa karta</button>
-                                        </div>
-                                        <div class="col-md-1">
-                                        </div>
-                                        <div class="col-md-2">
-                                        <button type="submit" class="btn btn-success btn-fill btn-block">Generuj raport</button>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>    
-                            </div>
-                        </div>
-                       
-                    </div>
-                    
+            </div>
+        </div>
+
 
         <footer class="footer">
             <div class="container-fluid">
@@ -309,7 +188,7 @@
                     <ul>
                         <li>
                             <a href="#">
-                                Powrót do góry
+                                Home
                             </a>
                         </li>
 
