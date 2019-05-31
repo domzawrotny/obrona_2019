@@ -148,20 +148,23 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Data i miejsce</h4>
+                                <h4 class="title">Edycja karty</h4>
+                                <p class="category">Wybierz lub wpisz wartości w poniższych kategoriach</p>
                             </div>
                             <div class="content">
                                  <form>
                                     <div class="row">
+                                    <div class="header">
+                                      <h5 class="title">Czas i miejsce</h5>
+                                    </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <input type="Date" class="form-control" placeholder="Wybierz datę" value="2005-04-02">
+                                                <input type="date" class="form-control" placeholder="Wybierz datę" value="2005-04-02">
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <button type="submit" class="btn btn-info btn-fill btn-block pull-right">Wybierz</button>
                                         </div>
-                                        
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
@@ -207,6 +210,66 @@
                                                         <li><a href="#">37</a></li>
                                                     </ul>
                                             </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                    <div class="header">
+                                      <h5 class="title">Skład komisji</h5>
+                                    </div>
+                                        <div class="col-md-4">
+                                                <label>Przewodniczący</label>
+                                                <div class="dropdown">
+                                                <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Aciak</button>
+                                                        <ul class="dropdown-menu min-width: 100%">
+                                                            <li><a href="#">Beciak</a></li>
+                                                            <li><a href="#">Ceciak</a></li>
+                                                        </ul>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                                <label>Promotor</label>
+                                                <div class="dropdown">
+                                                <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Aciak</button>
+                                                        <ul class="dropdown-menu min-width: 100%">
+                                                            <li><a href="#">Beciak</a></li>
+                                                            <li><a href="#">Ceciak</a></li>
+                                                        </ul>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                                <label>Recenzent</label>
+                                                <div class="dropdown">
+                                                <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Aciak</button>
+                                                        <ul class="dropdown-menu min-width: 100%">
+                                                            <li><a href="#">Beciak</a></li>
+                                                            <li><a href="#">Ceciak</a></li>
+                                                        </ul>
+                                                </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                    <div class="header">
+                                      <h5 class="title">Dyplomant</h5>
+                                    </div>                                    
+                                        <div class="col-md-3">
+                                            <label>Godzina</label>
+                                            <div class="form-group">
+                                                <input type="time" class="form-control" placeholder="Imię i nazwisko">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Dyplomant</label>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Imię i nazwisko">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                        <label>Zatwierdź</label>
+                                            <button type="submit" class="btn btn-info btn-fill btn-block pull-right">Wybierz</button>
+                                        </div>
                                         </div>
                                     </div>
                                     <div class="clearfix"></div>
