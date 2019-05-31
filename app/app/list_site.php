@@ -147,24 +147,10 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="header">
-                                <h4 class="title">Data i miejsce</h4>
-                            </div>
                             <div class="content">
                                  <form>
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <input type="Date" class="form-control" placeholder="Wybierz datę" value="2005-04-02">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <button type="submit" class="btn btn-info btn-fill btn-block pull-right">Wybierz</button>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="row">
+                                        <div class="col-md-12">
                                                 <label>Wydział</label>
                                                 <div class="dropdown">
                                                 <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Wydział Akrobatyki i Dmuchania Ryżu</button>
@@ -174,42 +160,7 @@
                                                         </ul>
                                                 </div>
                                         </div>
-                                        <div class="col-md-4">
-                                                <label>Instytut</label>
-                                                <div class="dropdown">
-                                                <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Instytut Skoków w dal</button>
-                                                        <ul class="dropdown-menu min-width: 100%">
-                                                            <li><a href="#">Instytut Skoków w Bok</a></li>
-                                                            <li><a href="#">Instytut Risotto</a></li>
-                                                        </ul>
-                                                </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                                <label>Budynek</label>
-                                                <div class="dropdown">
-                                                <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">A-0</button>
-                                                        <ul class="dropdown-menu min-width: 100%">
-                                                            <li><a href="#">A-2</a></li>
-                                                            <li><a href="#">A-29</a></li>
-                                                        </ul>
-                                                </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label>Sala</label>
-                                            <div class="dropdown">
-                                            <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">02</button>
-                                                    <ul class="dropdown-menu min-width: 100%">
-                                                        <li><a href="#">02</a></li>
-                                                        <li><a href="#">04</a></li>
-                                                        <li><a href="#">05</a></li>
-                                                        <li class="divider"></li>
-                                                        <li><a href="#">21</a></li>
-                                                        <li><a href="#">37</a></li>
-                                                    </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix"></div>
+                                       
                                 </form>
                             </div>
                         </div>
@@ -284,15 +235,10 @@
                                 </table>
                                 <div class="content">
                                     <div class="row">
-                                        <div class="col-md-8">
+                                        <div class="col-md-10">
                                         </div>
                                         <div class="col-md-2">
                                         <button type="submit" class="btn btn-info btn-fill btn-block">Nowa karta</button>
-                                        </div>
-                                        <div class="col-md-1">
-                                        </div>
-                                        <div class="col-md-2">
-                                        <button type="submit" class="btn btn-success btn-fill btn-block">Generuj raport</button>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
