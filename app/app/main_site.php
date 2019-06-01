@@ -240,7 +240,7 @@
                                         	<td>Prof. dr hab. Ambroży Kleks</td>
                                         	<td>Dr Krzysztof Wstrząs</td>
                                         	<td>Dr Grzegorz Domek</td>
-                                            <td>Karol Papież</td>                                            
+                                            <td>Karol Wykopek</td>
                                             <td><a href="#">Edytuj</a></td>
                                             <td><a href="#">Usuń</a></td>
                                         </tr>
@@ -362,6 +362,7 @@
             });
         </script> 
         <?php
+            unset($_SESSION['error']);
         }
     ?>
     
