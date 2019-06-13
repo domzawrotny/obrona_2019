@@ -8,14 +8,14 @@ if (!isSet($_SESSION['signed_in']) && ( $_SESSION['permissions'] != 1 || $_SESSI
     header('Location: index.php');
     exit();
 }
-//if ((!(isSet($_POST['firstname']))) ||
-//    (!(isSet($_POST['surname']))) ||
-//    (!(isSet($_POST['user_password']))) ||
-//    (!(isSet($_POST['pesel'])))
-//) {
-//    header('Location: add_new_student.php');
-//    exit();
-//}
+if ((!(isSet($_POST['firstname']))) ||
+    (!(isSet($_POST['surname']))) ||
+    (!(isSet($_POST['user_password']))) ||
+    (!(isSet($_POST['pesel'])))
+) {
+    header('Location: add_new_student.php');
+    exit();
+}
 ?>
 <html>
 <head>
@@ -72,33 +72,33 @@ if (!isSet($_SESSION['signed_in']) && ( $_SESSION['permissions'] != 1 || $_SESSI
 
 
         if (strlen($firstname) < 4 ) {
-            $_SESSION['firstname_error'] = '<span style="color:red">First name is too short!<br/></span>';
+            $_SESSION['firstname_error'] = 'First name is too short!';
             $validated = false;
         }
         else {
             unset($_SESSION['firstname_error']);
-//                if (ctype_alpha($firstname) == false ) {
-//                    $validated = false;
-//                    $_SESSION['firstname_error'] = '<span style="color:red">First name must not contain special characters!<br/></span>';
-//                }
-//                else {
-//                    unset($_SESSION['firstname_error']);
-//                }
+                if (ctype_alpha($firstname) == false ) {
+                    $validated = false;
+                    $_SESSION['firstname_error'] = 'First name must not contain special characters!';
+                }
+                else {
+                    unset($_SESSION['firstname_error']);
+                }
         }
 
         if (strlen($surname) < 4 ) {
-            $_SESSION['surname_error'] = '<span style="color:red">Surname is too short!<br/></span>';
+            $_SESSION['surname_error'] = 'Surname is too short!';
             $validated = false;
         }
         else {
             unset($_SESSION['surname_error']);
-//                if (ctype_alpha($firstname) == false ) {
-//                    $validated = false;
-//                    $_SESSION['surname_error'] = '<span style="color:red">Surname must not contain special characters!<br/></span>';
-//                }
-//                else {
-//                    unset($_SESSION['surname_error']);
-//                }
+                if (ctype_alpha($firstname) == false ) {
+                    $validated = false;
+                    $_SESSION['surname_error'] = 'Surname must not contain special characters!';
+                }
+                else {
+                    unset($_SESSION['surname_error']);
+                }
 
         }
 
