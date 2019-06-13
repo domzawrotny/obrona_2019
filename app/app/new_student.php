@@ -8,14 +8,15 @@ if (!isSet($_SESSION['signed_in']) && ( $_SESSION['permissions'] != 1 || $_SESSI
     header('Location: index.php');
     exit();
 }
-if ((!(isSet($_POST['firstname']))) ||
-    (!(isSet($_POST['surname']))) ||
-    (!(isSet($_POST['user_password']))) ||
-    (!(isSet($_POST['pesel'])))
-) {
-    header('Location: add_new_student.php');
-    exit();
-} ?>
+//if ((!(isSet($_POST['firstname']))) ||
+//    (!(isSet($_POST['surname']))) ||
+//    (!(isSet($_POST['user_password']))) ||
+//    (!(isSet($_POST['pesel'])))
+//) {
+//    header('Location: add_new_student.php');
+//    exit();
+//}
+?>
 <html>
 <head>
     <title> Add new student </title>
