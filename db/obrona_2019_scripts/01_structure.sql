@@ -119,3 +119,25 @@ PRIMARY KEY (`student_id`),
 KEY `fkIdx_44` (`login_id`),
 CONSTRAINT `FK_44` FOREIGN KEY `fkIdx_44` (`login_id`) REFERENCES `USER_LOGIN` (`login_id`)
 );
+
+
+
+CREATE TABLE `BUILDING`
+(
+ `building_id`           INT NOT NULL AUTO_INCREMENT,
+ `building_name`         VARCHAR(5) NOT NULL ,
+
+PRIMARY KEY (`building_id`)
+);
+
+
+CREATE TABLE `ROOM`
+(
+ `room_id`           INT NOT NULL AUTO_INCREMENT,
+ `room_name`         VARCHAR(5) NOT NULL ,
+ `PK_bulding_id`     INT NOT NULL ,
+
+PRIMARY KEY (`room_id`) ,
+KEY `fkIdx_2110` (`PK_bulding_id`) ,
+CONSTRAINT `FK_2110` FOREIGN KEY `fkIdx_2110` (`PK_bulding_id`) REFERENCES `BUILDING` (`building_id`)
+);
