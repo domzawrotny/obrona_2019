@@ -169,8 +169,6 @@
                                             <div class="dropdown">
                                             <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Wydział Akrobatyki i Dmuchania Ryżu</button>
                                                 <ul class="dropdown-menu min-width: 100%">
-                                                    <li><a href="#">Wydział Nawijania Makaronu</a></li>
-                                                    <li><a href="#">Wydział Zarządzania i Marketingu</a></li>
                                                     <?php
                                                         require_once ('connect.php');
                                                         $db_connection = new DatabaseConnection();
@@ -203,6 +201,7 @@
                                                 <ul class="dropdown-menu min-width: 100%">
                                                     <li><a href="#">Instytut Skoków w Bok</a></li>
                                                     <li><a href="#">Instytut Risotto</a></li>
+
                                                 </ul>
                                             </div>
                                         </div>
@@ -213,6 +212,28 @@
                                                         <ul class="dropdown-menu min-width: 100%">
                                                             <li><a href="#">A-2</a></li>
                                                             <li><a href="#">A-29</a></li>
+                                                            <li class="divider"></li>
+                                                            <?php
+                                                            require_once ('connect.php');
+                                                            $db_connection = new DatabaseConnection();
+                                                            $db_connection->establishConnection();
+
+                                                            if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
+                                                                echo "Error occured while attempting to connect to the datebase!<br/>";
+                                                                #die;
+                                                            }
+                                                            else {
+                                                                $query = "SELECT * from building";
+
+                                                                $result = $db_connection->getCurrentDBConnection()->query($query);
+
+                                                                while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)): ?>
+                                                                    <li><a href="#"><?= $row['bulding_name'] ?></a></li>
+                                                                <?php endwhile; ?>
+                                                                <?php
+                                                            }
+                                                            $db_connection->dropCurrentConnection();
+                                                            ?>
                                                         </ul>
                                                 </div>
                                         </div>
@@ -227,6 +248,28 @@
                                                         <li class="divider"></li>
                                                         <li><a href="#">21</a></li>
                                                         <li><a href="#">37</a></li>
+                                                        <li class="divider"></li>
+                                                        <?php
+                                                        require_once ('connect.php');
+                                                        $db_connection = new DatabaseConnection();
+                                                        $db_connection->establishConnection();
+
+                                                        if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
+                                                            echo "Error occured while attempting to connect to the datebase!<br/>";
+                                                            #die;
+                                                        }
+                                                        else {
+                                                            $query = "SELECT * from room";
+
+                                                            $result = $db_connection->getCurrentDBConnection()->query($query);
+
+                                                            while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)): ?>
+                                                                <li><a href="#"><?= $row['room_name'] ?></a></li>
+                                                            <?php endwhile; ?>
+                                                            <?php
+                                                        }
+                                                        $db_connection->dropCurrentConnection();
+                                                        ?>
                                                     </ul>
                                             </div>
                                         </div>
