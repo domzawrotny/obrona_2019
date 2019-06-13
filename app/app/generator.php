@@ -22,6 +22,13 @@ class MyGenerator{
     }
 
 
+    public function generateEmailAddress($login) {
+        $emailAddress = $login . "@student.zgora.test.pl";
+
+        return $emailAddress;
+    }
+
+
     public function newUser($firstname,$surname,$login,$db_connection, $login_permissions_query,$user_sql_query) {
         if (!($result_1 = $db_connection->getCurrentDBConnection()->query($login_permissions_query))) {
             echo "An error occurred in the first query!<br/>";

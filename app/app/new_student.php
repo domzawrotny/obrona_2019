@@ -36,9 +36,9 @@ if ((!(isSet($_POST['firstname']))) ||
     <div class="clear"></div>
     <?php
     $db_connection = new DatabaseConnection();
-//    $db_connection->establishConnection();
-//    $loginGenerator = new MyGenerator();
-//    $peselValidator = new CheckPesel();
+    $db_connection->establishConnection();
+    $loginGenerator = new MyGenerator();
+    $peselValidator = new CheckPesel();
 
 
 
@@ -140,32 +140,33 @@ if ((!(isSet($_POST['firstname']))) ||
             header('Location: add_new_student.php');
         }
 
-//        $login = $loginGenerator->generateLogin($firstname,$surname,$db_connection);
+        $login = $loginGenerator->generateLogin($firstname,$surname,$db_connection);
+        $emailAddress = $loginGenerator->generateEmailAddress($login);
 
-//        $login_permissions_query = "INSERT INTO user_login (login,password,permissions_id)
-//                                        VALUES
-//                                        (
-//                                          '$login',
-//                                          '$password',
-//                                          (SELECT permissions_id FROM user_permissions WHERE permissions_type='student')
-//                                        )";
+        $login_permissions_query = "INSERT INTO user_login (login,password,permissions_id, email_address)
+                                        VALUES
+                                        (
+                                          '$login',
+                                          '$password',
+                                          (SELECT permissions_id FROM user_permissions WHERE permissions_type='student'),
+                                          '$emailAddress'
+                                        )";
 //
-//        $student_query = "INSERT INTO student (surname, firstname, login_id, pesel, student_group_id, city, street, house_no, birth_date)
-//                                  VALUES
-//                                  (
-//                                    '$surname',
-//                                    '$firstname',
-//                                    (SELECT login_id FROM user_login WHERE login='$login'),
-//                                    '$pesel',
-//                                    (SELECT student_group_id FROM student_group where student_group_name='$student_group_name'),
-//                                    '$city',
-//                                    '$street',
-//                                    '$house_no',
-//                                    '$birth_date'
-//                                  )";
+        $student_query = "INSERT INTO student (surname, firstname, login_id, pesel, city, street, house_no, birth_date)
+                                  VALUES
+                                  (
+                                    '$surname',
+                                    '$firstname',
+                                    (SELECT login_id FROM user_login WHERE login='$login'),
+                                    '$pesel',
+                                    '$city',
+                                    '$street',
+                                    '$house_no',
+                                    '$birth_date'
+                                  )";
 
-//            echo $login_permissions_query."<br/>";
-//            echo $student_query."<br/>";
+            echo $login_permissions_query."<br/>";
+            echo $student_query."<br/>";
 
 //        $loginGenerator->newUser($firstname,$surname,$login,$db_connection,$login_permissions_query,$student_query);
         $_SESSION['user_added'] = true;
