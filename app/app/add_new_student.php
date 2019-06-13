@@ -282,7 +282,7 @@
         });
     </script>
         <?php
-        unset($_SESSION['p_error']);
+//        unset($_SESSION['p_error']);
     }
     if(isSet($_SESSION['pesel_error'])) {
         ?>
@@ -302,7 +302,7 @@
             });
         </script>
         <?php
-        unset($_SESSION['pesel_error']);
+//        unset($_SESSION['pesel_error']);
     }
     if(isSet($_SESSION['firstname_error'])) {
         ?>
@@ -322,7 +322,7 @@
             });
         </script>
         <?php
-        unset($_SESSION['firstname_error']);
+//        unset($_SESSION['firstname_error']);
     }
     if(isSet($_SESSION['surname_error'])) {
         ?>
@@ -342,7 +342,7 @@
             });
         </script>
         <?php
-        unset($_SESSION['surname_error']);
+//        unset($_SESSION['surname_error']);
     }
 ?>
 
