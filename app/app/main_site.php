@@ -164,7 +164,7 @@
                                         
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-5">
                                             <label>Wydział</label>
                                             <div class="dropdown">
                                             <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Wydział Akrobatyki i Dmuchania Ryżu</button>
@@ -194,25 +194,25 @@
                                                 </ul>
                                             </div>
                                         </div>
+<!--                                        <div class="col-md-4">-->
+<!--                                            <label>Instytut</label>-->
+<!--                                            <div class="dropdown">-->
+<!--                                            <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Instytut Skoków w dal</button>-->
+<!--                                                <ul class="dropdown-menu min-width: 100%">-->
+<!--                                                    <li><a href="#">Instytut Skoków w Bok</a></li>-->
+<!--                                                    <li><a href="#">Instytut Risotto</a></li>-->
+<!---->
+<!--                                                </ul>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
                                         <div class="col-md-4">
-                                            <label>Instytut</label>
-                                            <div class="dropdown">
-                                            <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Instytut Skoków w dal</button>
-                                                <ul class="dropdown-menu min-width: 100%">
-                                                    <li><a href="#">Instytut Skoków w Bok</a></li>
-                                                    <li><a href="#">Instytut Risotto</a></li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2">
                                                 <label>Budynek</label>
                                                 <div class="dropdown">
                                                 <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">A-0</button>
                                                         <ul class="dropdown-menu min-width: 100%">
-                                                            <li><a href="#">A-2</a></li>
-                                                            <li><a href="#">A-29</a></li>
-                                                            <li class="divider"></li>
+<!--                                                            <li><a href="#">A-2</a></li>-->
+<!--                                                            <li><a href="#">A-29</a></li>-->
+<!--                                                            <li class="divider"></li>-->
                                                             <?php
                                                             require_once ('connect.php');
                                                             $db_connection = new DatabaseConnection();
@@ -237,18 +237,18 @@
                                                         </ul>
                                                 </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-3">
                                             <label>Sala</label>
                                             <div class="dropdown">
                                             <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">02</button>
                                                     <ul class="dropdown-menu min-width: 100%">
-                                                        <li><a href="#">02</a></li>
-                                                        <li><a href="#">04</a></li>
-                                                        <li><a href="#">05</a></li>
-                                                        <li class="divider"></li>
-                                                        <li><a href="#">21</a></li>
-                                                        <li><a href="#">37</a></li>
-                                                        <li class="divider"></li>
+<!--                                                        <li><a href="#">02</a></li>-->
+<!--                                                        <li><a href="#">04</a></li>-->
+<!--                                                        <li><a href="#">05</a></li>-->
+<!--                                                        <li class="divider"></li>-->
+<!--                                                        <li><a href="#">21</a></li>-->
+<!--                                                        <li><a href="#">37</a></li>-->
+<!--                                                        <li class="divider"></li>-->
                                                         <?php
                                                         require_once ('connect.php');
                                                         $db_connection = new DatabaseConnection();
