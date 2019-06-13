@@ -228,7 +228,7 @@
                                                                 $result = $db_connection->getCurrentDBConnection()->query($query);
 
                                                                 while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)): ?>
-                                                                    <li><a href="#"><?= $row['bulding_name'] ?></a></li>
+                                                                    <li><a href="#"><?= $row['building_name'] ?></a></li>
                                                                 <?php endwhile; ?>
                                                                 <?php
                                                             }
