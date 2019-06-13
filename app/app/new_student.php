@@ -58,7 +58,7 @@ if ((!(isSet($_POST['firstname']))) ||
         $city = htmlentities($_POST['city'],ENT_QUOTES,"UTF-8");
         $street = htmlentities($_POST['street'],ENT_QUOTES,"UTF-8");
         $house_no = htmlentities($_POST['house_no'],ENT_QUOTES,"UTF-8");
-        $birth_date = htmlentities($_POST['birth_date'],ENT_QUOTES,"UTF-8"); // add converting !!!!
+//        $birth_date = htmlentities($_POST['birth_date'],ENT_QUOTES,"UTF-8"); // add converting !!!!
 
 
 //        if (empty($_POST['student_group_name']) == true) {
