@@ -165,24 +165,46 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
-                                                <label>Wydział</label>
-                                                <div class="dropdown">
-                                                <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Wydział Akrobatyki i Dmuchania Ryżu</button>
-                                                        <ul class="dropdown-menu min-width: 100%">
-                                                            <li><a href="#">Wydział Nawijania Makaronu</a></li>
-                                                            <li><a href="#">Wydział Zarządzania i Marketingu</a></li>
-                                                        </ul>
-                                                </div>
+                                            <label>Wydział</label>
+                                            <div class="dropdown">
+                                            <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Wydział Akrobatyki i Dmuchania Ryżu</button>
+                                                <ul class="dropdown-menu min-width: 100%">
+                                                    <li><a href="#">Wydział Nawijania Makaronu</a></li>
+                                                    <li><a href="#">Wydział Zarządzania i Marketingu</a></li>
+                                                    <?php
+                                                        require_once ('connect.php');
+                                                        $db_connection = new DatabaseConnection();
+                                                        $db_connection->establishConnection();
+
+                                                        if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
+                                                            echo "Error occured while attempting to connect to the datebase!<br/>";
+                                                            #die;
+                                                        }
+                                                        else {
+                                                            $query = "SELECT * from faculty";
+
+                                                            $result = $db_connection->getCurrentDBConnection()->query($query);
+
+                                                            while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)): ?>
+                                                                <li><a href="#"><?= $row['faculty_name'] ?></a></li>
+                                                            <?php endwhile; ?>
+                                                    <?php
+                                                        }
+                                                        $db_connection->dropCurrentConnection();
+                                                    ?>
+
+                                                </ul>
+                                            </div>
                                         </div>
                                         <div class="col-md-4">
-                                                <label>Instytut</label>
-                                                <div class="dropdown">
-                                                <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Instytut Skoków w dal</button>
-                                                        <ul class="dropdown-menu min-width: 100%">
-                                                            <li><a href="#">Instytut Skoków w Bok</a></li>
-                                                            <li><a href="#">Instytut Risotto</a></li>
-                                                        </ul>
-                                                </div>
+                                            <label>Instytut</label>
+                                            <div class="dropdown">
+                                            <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Instytut Skoków w dal</button>
+                                                <ul class="dropdown-menu min-width: 100%">
+                                                    <li><a href="#">Instytut Skoków w Bok</a></li>
+                                                    <li><a href="#">Instytut Risotto</a></li>
+                                                </ul>
+                                            </div>
                                         </div>
                                         <div class="col-md-2">
                                                 <label>Budynek</label>
