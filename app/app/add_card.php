@@ -167,7 +167,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-5">
                                                 <label>Wydział</label>
                                                 <div class="dropdown">
                                                 <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Wydział Akrobatyki i Dmuchania Ryżu</button>
@@ -177,17 +177,17 @@
                                                         </ul>
                                                 </div>
                                         </div>
+<!--                                        <div class="col-md-4">-->
+<!--                                                <label>Instytut</label>-->
+<!--                                                <div class="dropdown">-->
+<!--                                                <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Instytut Skoków w dal</button>-->
+<!--                                                        <ul class="dropdown-menu min-width: 100%">-->
+<!--                                                            <li><a href="#">Instytut Skoków w Bok</a></li>-->
+<!--                                                            <li><a href="#">Instytut Risotto</a></li>-->
+<!--                                                        </ul>-->
+<!--                                                </div>-->
+<!--                                        </div>-->
                                         <div class="col-md-4">
-                                                <label>Instytut</label>
-                                                <div class="dropdown">
-                                                <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Instytut Skoków w dal</button>
-                                                        <ul class="dropdown-menu min-width: 100%">
-                                                            <li><a href="#">Instytut Skoków w Bok</a></li>
-                                                            <li><a href="#">Instytut Risotto</a></li>
-                                                        </ul>
-                                                </div>
-                                        </div>
-                                        <div class="col-md-2">
                                                 <label>Budynek</label>
                                                 <div class="dropdown">
                                                 <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">A-0</button>
@@ -197,7 +197,7 @@
                                                         </ul>
                                                 </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-3">
                                             <label>Sala</label>
                                             <div class="dropdown">
                                             <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">02</button>
@@ -218,40 +218,20 @@
                                       <h5 class="title">Skład komisji</h5>
                                     </div>
                                         <div class="col-md-4">
-                                                <label>Przewodniczący</label>
-                                                <div class="dropdown">
-                                                <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Aciak</button>
-                                                        <ul class="dropdown-menu min-width: 100%">
-                                                            <li><a href="#">Beciak</a></li>
-                                                            <li><a href="#">Ceciak</a></li>
-                                                        </ul>
-                                                </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                                <label>Promotor</label>
-                                                <div class="dropdown">
-                                                <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Aciak</button>
-                                                        <ul class="dropdown-menu min-width: 100%">
-                                                            <li><a href="#">Beciak</a></li>
-                                                            <li><a href="#">Ceciak</a></li>
-                                                        </ul>
-                                                </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                                <label>Recenzent</label>
-                                                <div class="dropdown">
-                                                <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Aciak</button>
-                                                        <ul class="dropdown-menu min-width: 100%">
-                                                            <li><a href="#">Beciak</a></li>
-                                                            <li><a href="#">Ceciak</a></li>
-                                                        </ul>
-                                                </div>
+                                            <label>Przewodniczący</label>
+                                            <div class="dropdown">
+                                            <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Aciak</button>
+                                                <ul class="dropdown-menu min-width: 100%">
+                                                    <li><a href="#">Beciak</a></li>
+                                                    <li><a href="#">Ceciak</a></li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                     <div class="header">
-                                      <h5 class="title">Dyplomant</h5>
+                                      <h5 class="title">Dyplomanci</h5>
                                     </div>                                    
                                         <div class="col-md-3">
                                             <label>Godzina</label>
@@ -259,17 +239,44 @@
                                                 <input type="time" class="form-control" placeholder="Imię i nazwisko">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                    </div>
+                                     <div class="row">
+                                        <div class="col-md-4">
                                             <label>Dyplomant</label>
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Imię i nazwisko">
+                                            <div class="dropdown">
+                                                <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Student</button>
+                                                <ul class="dropdown-menu min-width: 100%">
+                                                    <li><a href="#">Beciak</a></li>
+                                                    <li><a href="#">Ceciak</a></li>
+                                                </ul>
                                             </div>
                                         </div>
-
-                                        <div class="col-md-3">
-                                        <label>Zatwierdź</label>
-                                            <button type="submit" class="btn btn-info btn-fill btn-block pull-right">Wybierz</button>
-                                        </div>
+                                         <div class="col-md-4">
+                                             <label>Promotor</label>
+                                             <div class="dropdown">
+                                                 <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Student</button>
+                                                 <ul class="dropdown-menu min-width: 100%">
+                                                     <li><a href="#">Beciak</a></li>
+                                                     <li><a href="#">Ceciak</a></li>
+                                                 </ul>
+                                             </div>
+                                         </div>
+                                         <div class="col-md-4">
+                                             <label>Recenzent</label>
+                                             <div class="dropdown">
+                                                 <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Student</button>
+                                                 <ul class="dropdown-menu min-width: 100%">
+                                                     <li><a href="#">Beciak</a></li>
+                                                     <li><a href="#">Ceciak</a></li>
+                                                 </ul>
+                                             </div>
+                                         </div>
+                                         <div class="row">
+                                             <div class="col-md-3">
+                                                 <label>Zatwierdź</label>
+                                                 <button type="submit" class="btn btn-info btn-fill btn-block pull-right">Potwierdź</button>
+                                             </div>
+                                         </div>
                                         </div>
                                     </div>
                                     <div class="clearfix"></div>
@@ -279,91 +286,91 @@
                     </div>
                     
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Wykaz egzaminów</h4>
-                                <p class="category">Dla dnia XX.XX.XXXX</p>
-                            </div>
-                            <div class="content table-responsive table-full-width">
-                                <table class="table table-hover table-striped">
-                                    <thead>
-                                        <th>Godz.</th>
-                                    	<th>Przewodniczący</th>
-                                    	<th>Promotor</th>
-                                    	<th>Recenzent</th>
-                                        <th>Dyplomant</th>
-                                        <th>Edycja</th>
-                                        <th>Usuwanie</th>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                        	<td>7:00</td>
-                                        	<td>Prof. dr hab. Ambroży Kleks</td>
-                                        	<td>Dr Krzysztof Wstrząs</td>
-                                        	<td>Dr Grzegorz Domek</td>
-                                            <td>Karol Papież</td>                                            
-                                            <td><a href="#">Edytuj</a></td>
-                                            <td><a href="#">Usuń</a></td>
-                                        </tr>
-                                        <tr>
-                                        	<td>7:15</td>
-                                        	<td>Prof. dr hab. Ambroży Kleks</td>
-                                        	<td>Dr Krzysztof Wstrząs</td>
-                                        	<td>Dr Grzegorz Domek</td>
-                                            <td>Paweł Jumper</td>
-                                            <td><a href="#">Edytuj</a></td>
-                                            <td><a href="#">Usuń</a></td>
-                                        </tr>
-                                        <tr>
-                                        	<td>7:30</td>
-                                        	<td>Prof. dr hab. Ambroży Kleks</td>
-                                        	<td>Dr Krzysztof Wstrząs</td>
-                                        	<td>Dr Grzegorz Domek</td>
-                                            <td>Sasza Szara</td>
-                                            <td><a href="#">Edytuj</a></td>
-                                            <td><a href="#">Usuń</a></td>
-                                        </tr>
-                                        <tr>
-                                        	<td>7:45</td>
-                                        	<td>Prof. dr hab. Jan Tadeusz Stanisławski</td>
-                                        	<td>Dr Paweł Jubicz</td>
-                                        	<td>Dr Michalina Quinn</td>
-                                            <td>Jacek Kaczyński</td>
-                                            <td><a href="#">Edytuj</a></td>
-                                            <td><a href="#">Usuń</a></td>
-                                        </tr>
-                                        <tr>
-                                        	<td>8:00</td>
-                                        	<td>Prof. dr hab. Jan Tadeusz Stanisławski</td>
-                                        	<td>Dr Paweł Jubicz</td>
-                                        	<td>Dr Michalina Quinn</td>
-                                            <td>Placek Kaczyński</td>
-                                            <td><a href="#">Edytuj</a></td>
-                                            <td><a href="#">Usuń</a></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div class="content">
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                        </div>
-                                        <div class="col-md-2">
-                                        <button type="submit" class="btn btn-info btn-fill btn-block">Nowa karta</button>
-                                        </div>
-                                        <div class="col-md-1">
-                                        </div>
-                                        <div class="col-md-2">
-                                        <button type="submit" class="btn btn-success btn-fill btn-block">Generuj raport</button>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>    
-                            </div>
-                        </div>
+<!--                <div class="row">-->
+<!--                    <div class="col-md-12">-->
+<!--                        <div class="card">-->
+<!--                            <div class="header">-->
+<!--                                <h4 class="title">Wykaz egzaminów</h4>-->
+<!--                                <p class="category">Dla dnia XX.XX.XXXX</p>-->
+<!--                            </div>-->
+<!--                            <div class="content table-responsive table-full-width">-->
+<!--                                <table class="table table-hover table-striped">-->
+<!--                                    <thead>-->
+<!--                                        <th>Godz.</th>-->
+<!--                                    	<th>Przewodniczący</th>-->
+<!--                                    	<th>Promotor</th>-->
+<!--                                    	<th>Recenzent</th>-->
+<!--                                        <th>Dyplomant</th>-->
+<!--                                        <th>Edycja</th>-->
+<!--                                        <th>Usuwanie</th>-->
+<!--                                    </thead>-->
+<!--                                    <tbody>-->
+<!--                                        <tr>-->
+<!--                                        	<td>7:00</td>-->
+<!--                                        	<td>Prof. dr hab. Ambroży Kleks</td>-->
+<!--                                        	<td>Dr Krzysztof Wstrząs</td>-->
+<!--                                        	<td>Dr Grzegorz Domek</td>-->
+<!--                                            <td>Karol Papież</td>                                            -->
+<!--                                            <td><a href="#">Edytuj</a></td>-->
+<!--                                            <td><a href="#">Usuń</a></td>-->
+<!--                                        </tr>-->
+<!--                                        <tr>-->
+<!--                                        	<td>7:15</td>-->
+<!--                                        	<td>Prof. dr hab. Ambroży Kleks</td>-->
+<!--                                        	<td>Dr Krzysztof Wstrząs</td>-->
+<!--                                        	<td>Dr Grzegorz Domek</td>-->
+<!--                                            <td>Paweł Jumper</td>-->
+<!--                                            <td><a href="#">Edytuj</a></td>-->
+<!--                                            <td><a href="#">Usuń</a></td>-->
+<!--                                        </tr>-->
+<!--                                        <tr>-->
+<!--                                        	<td>7:30</td>-->
+<!--                                        	<td>Prof. dr hab. Ambroży Kleks</td>-->
+<!--                                        	<td>Dr Krzysztof Wstrząs</td>-->
+<!--                                        	<td>Dr Grzegorz Domek</td>-->
+<!--                                            <td>Sasza Szara</td>-->
+<!--                                            <td><a href="#">Edytuj</a></td>-->
+<!--                                            <td><a href="#">Usuń</a></td>-->
+<!--                                        </tr>-->
+<!--                                        <tr>-->
+<!--                                        	<td>7:45</td>-->
+<!--                                        	<td>Prof. dr hab. Jan Tadeusz Stanisławski</td>-->
+<!--                                        	<td>Dr Paweł Jubicz</td>-->
+<!--                                        	<td>Dr Michalina Quinn</td>-->
+<!--                                            <td>Jacek Kaczyński</td>-->
+<!--                                            <td><a href="#">Edytuj</a></td>-->
+<!--                                            <td><a href="#">Usuń</a></td>-->
+<!--                                        </tr>-->
+<!--                                        <tr>-->
+<!--                                        	<td>8:00</td>-->
+<!--                                        	<td>Prof. dr hab. Jan Tadeusz Stanisławski</td>-->
+<!--                                        	<td>Dr Paweł Jubicz</td>-->
+<!--                                        	<td>Dr Michalina Quinn</td>-->
+<!--                                            <td>Placek Kaczyński</td>-->
+<!--                                            <td><a href="#">Edytuj</a></td>-->
+<!--                                            <td><a href="#">Usuń</a></td>-->
+<!--                                        </tr>-->
+<!--                                    </tbody>-->
+<!--                                </table>-->
+<!--                                <div class="content">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-md-8">-->
+<!--                                        </div>-->
+<!--                                        <div class="col-md-2">-->
+<!--                                        <button type="submit" class="btn btn-info btn-fill btn-block">Nowa karta</button>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-md-1">-->
+<!--                                        </div>-->
+<!--                                        <div class="col-md-2">-->
+<!--                                        <button type="submit" class="btn btn-success btn-fill btn-block">Generuj raport</button>-->
+<!--                                        </div>-->
+<!--                                        <div class="clearfix"></div>-->
+<!--                                    </div>-->
+<!--                                </div>    -->
+<!--                            </div>-->
+<!--                        </div>-->
                        
-                    </div>
+<!--                    </div>-->
                     
 
         <footer class="footer">
