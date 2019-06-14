@@ -29,8 +29,8 @@ PRIMARY KEY (`study_degree_id`)
 
 CREATE TABLE `USER_PERMISSIONS`
 (
- `permissions_id`   INT NOT NULL AUTO_INCREMENT,
- `permissions_type` VARCHAR(20) NOT NULL ,
+ `permissions_id`    INT NOT NULL AUTO_INCREMENT,
+`permissions_type`     VARCHAR(20) NOT NULL ,
  `quick_description` VARCHAR(30) NOT NULL,
 
 PRIMARY KEY (`permissions_id`)
@@ -140,4 +140,50 @@ CREATE TABLE `ROOM`
 PRIMARY KEY (`room_id`) ,
 KEY `fkIdx_2110` (`PK_bulding_id`) ,
 CONSTRAINT `FK_2110` FOREIGN KEY `fkIdx_2110` (`PK_bulding_id`) REFERENCES `BUILDING` (`building_id`)
+);
+
+
+CREATE TABLE `EXAM_GROUP`
+(
+    `exam_group_id`     INT NOT NULL AUTO_INCREMENT ,
+    `PK_student_id`     INT NOT NULL ,
+    `PK_promotor_id`    INT NOT NULL ,
+    `PK_reviewer_id`    INT NULL ,
+
+    PRIMARY KEY (`exam_group_id`) ,
+    KEY `fkIdx_2137` (`PK_student_id`) ,
+    CONSTRAINT `FK_2137` FOREIGN KEY `fkIdx_2137` (`PK_student_id`) REFERENCES `STUDENT` (`student_id`) ,
+    KEY `fkIdx_2138` (`PK_promotor_id`) ,
+    CONSTRAINT `FK_2138` FOREIGN KEY `fkIdx_2138` (`PK_promotor_id`) REFERENCES `LECTURER` (`lecturer_id`) ,
+    KEY `fkIdx_2139` (`PK_reviewer_id`) ,
+    CONSTRAINT `FK_2139` FOREIGN KEY `fkIdx_2139` (`PK_reviewer_id`) REFERENCES `LECTURER` (`lecturer_id`)
+);
+
+CREATE TABLE `EXAM_COMMISSION`
+(
+    `exam_commission_id`    INT NOT NULL AUTO_INCREMENT ,
+    `PK_leader_id`          INT NOT NULL ,
+    `PK_room_id`            INT NOT NULL ,
+    `PK_exam_group_1_id`    INT NOT NULL ,
+    `PK_exam_group_2_id`    INT NULL ,
+    `PK_exam_group_3_id`    INT NULL ,
+    `PK_exam_group_4_id`    INT NULL ,
+    `start_time`            TIME NOT NULL ,
+    `end_time`              TIME NOT NULL ,
+    `exam_date`             DATE NOT NULL ,
+    `exam_confirmed`        BOOLEAN NOT NULL ,
+
+    PRIMARY KEY (`exam_commission_id`) ,
+    KEY `fkIdx_2140` (`PK_leader_id`) ,
+    CONSTRAINT `FK_2140` FOREIGN KEY `fkIdx_2140` (`PK_leader_id`) REFERENCES `LECTURER` (`lecturer_id`) ,
+    KEY `fkIdx_2141` (`PK_exam_group_1_id`) ,
+    CONSTRAINT `FK_2141` FOREIGN KEY `fkIdx_2141` (`PK_exam_group_1_id`) REFERENCES `EXAM_GROUP` (`exam_group_id`) ,
+    KEY `fkIdx_2142` (`PK_exam_group_2_id`) ,
+    CONSTRAINT `FK_2142` FOREIGN KEY `fkIdx_2142` (`PK_exam_group_2_id`) REFERENCES `EXAM_GROUP` (`exam_group_id`) ,
+    KEY `fkIdx_2143` (`PK_exam_group_3_id`) ,
+    CONSTRAINT `FK_2143` FOREIGN KEY `fkIdx_2143` (`PK_exam_group_3_id`) REFERENCES `EXAM_GROUP` (`exam_group_id`) ,
+    KEY `fkIdx_2144` (`PK_exam_group_4_id`) ,
+    CONSTRAINT `FK_2144` FOREIGN KEY `fkIdx_2144` (`PK_exam_group_4_id`) REFERENCES `EXAM_GROUP` (`exam_group_id`) ,
+    KEY `fkIdx_2145` (`PK_room_id`) ,
+    CONSTRAINT `FK_2145` FOREIGN KEY `fkIdx_2145` (`PK_room_id`) REFERENCES `ROOM` (`room_id`)
 );

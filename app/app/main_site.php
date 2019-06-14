@@ -352,7 +352,7 @@
                                         <div class="col-md-8">
                                         </div>
                                         <div class="col-md-2">
-                                        <button type="submit" class="btn btn-info btn-fill btn-block">Nowa karta</button>
+                                        <button type="submit" class="btn btn-info btn-fill btn-block" href="add_card.php">Nowa karta</button>
                                         </div>
                                         <div class="col-md-1">
                                         </div>
