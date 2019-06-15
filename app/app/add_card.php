@@ -742,7 +742,7 @@
                 demo.initChartist();
 
                 $.notify({
-                    icon: 'pe-7s-close-circle',
+                    icon: 'pe-7s-check',
                     message: "<?php echo $_SESSION['exam_commission'] ?>"
                 },{
                     type: 'success',

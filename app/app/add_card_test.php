@@ -156,13 +156,8 @@
                                     <div class="row">
 
 
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <label>Zatwierdź</label>
-                                                <input type="button"  value="Potwierdź" >
 
-                                            </div>
-                                        </div>
+
                                     </div>
                             </div>
                             <div class="clearfix"></div>
