@@ -167,7 +167,7 @@
                                         <div class="col-md-5">
                                             <label>Wydział</label>
                                             <div class="dropdown">
-                                            <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Wydział Akrobatyki i Dmuchania Ryżu</button>
+                                            <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Wybierz wydzial</button>
                                                 <ul class="dropdown-menu min-width: 100%">
                                                     <?php
                                                         require_once ('connect.php');
@@ -352,12 +352,12 @@
                                         <div class="col-md-8">
                                         </div>
                                         <div class="col-md-2">
-                                        <button type="submit" class="btn btn-info btn-fill btn-block" href="add_card.php">Nowa karta</button>
+                                        <button type="submit" class="btn btn-info btn-fill btn-block" onclick="location.href='add_card.php'">Nowa karta</button>
                                         </div>
                                         <div class="col-md-1">
                                         </div>
                                         <div class="col-md-2">
-                                        <button type="submit" class="btn btn-success btn-fill btn-block">Generuj raport</button>
+                                        <button type="submit" class="btn btn-success btn-fill btn-block" onclick="location.href='generate_card.php'">Generuj raport</button>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
