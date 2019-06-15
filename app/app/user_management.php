@@ -154,8 +154,12 @@
                                         <div id="content">
                                         <div class="row">                                            
                                              <div class="col-md-2">                                                                         
-                                                &nbsp;&nbsp; <a href="add_new_user.php"><button type="submit" class="btn btn-info btn-fill">Nowy użytkownik</button></a>
-                                            </div>  
+                                                &nbsp;&nbsp; <a href="add_new_student.php"><button type="submit" class="btn btn-info btn-fill">Nowy student</button></a>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                &nbsp;&nbsp; <a href="add_new_lecturer.php"><button type="submit" class="btn btn-info btn-fill">Nowy wykładowca</button></a>
+                                            </div>
                                             <div class="col-md-4">
                                                 <input type="text" class="form-control" placeholder="Szukaj">
                                             </div>

@@ -164,47 +164,112 @@
                                         
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-4">
-                                                <label>Wydział</label>
-                                                <div class="dropdown">
-                                                <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Wydział Akrobatyki i Dmuchania Ryżu</button>
-                                                        <ul class="dropdown-menu min-width: 100%">
-                                                            <li><a href="#">Wydział Nawijania Makaronu</a></li>
-                                                            <li><a href="#">Wydział Zarządzania i Marketingu</a></li>
-                                                        </ul>
-                                                </div>
+                                        <div class="col-md-5">
+                                            <label>Wydział</label>
+                                            <div class="dropdown">
+                                            <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Wydział Akrobatyki i Dmuchania Ryżu</button>
+                                                <ul class="dropdown-menu min-width: 100%">
+                                                    <?php
+                                                        require_once ('connect.php');
+                                                        $db_connection = new DatabaseConnection();
+                                                        $db_connection->establishConnection();
+
+                                                        if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
+                                                            echo "Error occured while attempting to connect to the datebase!<br/>";
+                                                            #die;
+                                                        }
+                                                        else {
+                                                            $query = "SELECT * from faculty";
+
+                                                            $result = $db_connection->getCurrentDBConnection()->query($query);
+
+                                                            while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)): ?>
+                                                                <li><a href="#"><?= $row['faculty_name'] ?></a></li>
+                                                            <?php endwhile; ?>
+                                                    <?php
+                                                        }
+                                                        $db_connection->dropCurrentConnection();
+                                                    ?>
+
+                                                </ul>
+                                            </div>
                                         </div>
+<!--                                        <div class="col-md-4">-->
+<!--                                            <label>Instytut</label>-->
+<!--                                            <div class="dropdown">-->
+<!--                                            <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Instytut Skoków w dal</button>-->
+<!--                                                <ul class="dropdown-menu min-width: 100%">-->
+<!--                                                    <li><a href="#">Instytut Skoków w Bok</a></li>-->
+<!--                                                    <li><a href="#">Instytut Risotto</a></li>-->
+<!---->
+<!--                                                </ul>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
                                         <div class="col-md-4">
-                                                <label>Instytut</label>
-                                                <div class="dropdown">
-                                                <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Instytut Skoków w dal</button>
-                                                        <ul class="dropdown-menu min-width: 100%">
-                                                            <li><a href="#">Instytut Skoków w Bok</a></li>
-                                                            <li><a href="#">Instytut Risotto</a></li>
-                                                        </ul>
-                                                </div>
-                                        </div>
-                                        <div class="col-md-2">
                                                 <label>Budynek</label>
                                                 <div class="dropdown">
                                                 <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">A-0</button>
                                                         <ul class="dropdown-menu min-width: 100%">
-                                                            <li><a href="#">A-2</a></li>
-                                                            <li><a href="#">A-29</a></li>
+<!--                                                            <li><a href="#">A-2</a></li>-->
+<!--                                                            <li><a href="#">A-29</a></li>-->
+<!--                                                            <li class="divider"></li>-->
+                                                            <?php
+                                                            require_once ('connect.php');
+                                                            $db_connection = new DatabaseConnection();
+                                                            $db_connection->establishConnection();
+
+                                                            if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
+                                                                echo "Error occured while attempting to connect to the datebase!<br/>";
+                                                                #die;
+                                                            }
+                                                            else {
+                                                                $query = "SELECT * from building";
+
+                                                                $result = $db_connection->getCurrentDBConnection()->query($query);
+
+                                                                while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)): ?>
+                                                                    <li><a href="#"><?= $row['building_name'] ?></a></li>
+                                                                <?php endwhile; ?>
+                                                                <?php
+                                                            }
+                                                            $db_connection->dropCurrentConnection();
+                                                            ?>
                                                         </ul>
                                                 </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-3">
                                             <label>Sala</label>
                                             <div class="dropdown">
                                             <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">02</button>
                                                     <ul class="dropdown-menu min-width: 100%">
-                                                        <li><a href="#">02</a></li>
-                                                        <li><a href="#">04</a></li>
-                                                        <li><a href="#">05</a></li>
-                                                        <li class="divider"></li>
-                                                        <li><a href="#">21</a></li>
-                                                        <li><a href="#">37</a></li>
+<!--                                                        <li><a href="#">02</a></li>-->
+<!--                                                        <li><a href="#">04</a></li>-->
+<!--                                                        <li><a href="#">05</a></li>-->
+<!--                                                        <li class="divider"></li>-->
+<!--                                                        <li><a href="#">21</a></li>-->
+<!--                                                        <li><a href="#">37</a></li>-->
+<!--                                                        <li class="divider"></li>-->
+                                                        <?php
+                                                        require_once ('connect.php');
+                                                        $db_connection = new DatabaseConnection();
+                                                        $db_connection->establishConnection();
+
+                                                        if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
+                                                            echo "Error occured while attempting to connect to the datebase!<br/>";
+                                                            #die;
+                                                        }
+                                                        else {
+                                                            $query = "SELECT * from room";
+
+                                                            $result = $db_connection->getCurrentDBConnection()->query($query);
+
+                                                            while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)): ?>
+                                                                <li><a href="#"><?= $row['room_name'] ?></a></li>
+                                                            <?php endwhile; ?>
+                                                            <?php
+                                                        }
+                                                        $db_connection->dropCurrentConnection();
+                                                        ?>
                                                     </ul>
                                             </div>
                                         </div>
@@ -240,7 +305,7 @@
                                         	<td>Prof. dr hab. Ambroży Kleks</td>
                                         	<td>Dr Krzysztof Wstrząs</td>
                                         	<td>Dr Grzegorz Domek</td>
-                                            <td>Karol Papież</td>                                            
+                                            <td>Karol Wykopek</td>
                                             <td><a href="#">Edytuj</a></td>
                                             <td><a href="#">Usuń</a></td>
                                         </tr>
@@ -287,7 +352,7 @@
                                         <div class="col-md-8">
                                         </div>
                                         <div class="col-md-2">
-                                        <button type="submit" class="btn btn-info btn-fill btn-block">Nowa karta</button>
+                                        <button type="submit" class="btn btn-info btn-fill btn-block" href="add_card.php">Nowa karta</button>
                                         </div>
                                         <div class="col-md-1">
                                         </div>
@@ -362,6 +427,7 @@
             });
         </script> 
         <?php
+            unset($_SESSION['error']);
         }
     ?>
     

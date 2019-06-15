@@ -131,11 +131,79 @@ INSERT INTO lecturer (lecturer_id,title,surname, firstname, login_id, pesel, bir
     FALSE
   );
 
+INSERT INTO BULDING (building_id,building_name) VALUES
+(
+    361,
+    'A-9'
+),
+(
+    462,
+    'A-29'
+),
+(
+    946,
+    'A-2'
+);
+
+INSERT INTO ROOM (room_id,room_name,PK_bulding_id) VALUES
+(
+    450718,
+    '115',
+    (SELECT building_id FROM BUILDING WHERE building_name = 'A-2' )
+),
+(
+    450727,
+    '127',
+    (SELECT building_id FROM BUILDING WHERE building_name = 'A-2' )
+
+),
+(
+    450753,
+    '219',
+    (SELECT building_id FROM BUILDING WHERE building_name = 'A-2' )
+
+),
+(
+    6668,
+    '12a',
+    (SELECT building_id FROM BUILDING WHERE building_name = 'A-9' )
+
+),
+(
+    1983,
+    '15',
+    (SELECT building_id FROM BUILDING WHERE building_name = 'A-9' )
+
+),
+(
+    2000,
+    '25',
+    (SELECT building_id FROM BUILDING WHERE building_name = 'A-9' )
+
+),
+(
+    1095,
+    '106',
+    (SELECT building_id FROM BUILDING WHERE building_name = 'A-29' )
+
+),
+(
+    1269,
+    '2',
+    (SELECT building_id FROM BUILDING WHERE building_name = 'A-29' )
+
+),
+(
+    1322,
+    '207',
+    (SELECT building_id FROM BUILDING WHERE building_name = 'A-29' )
+
+);
 
 
-#### INSERT INTO subject_group (student_group_id, subject_id, lecturer_id)  VALUES
-#      (
-#        (SELECT student_group_id FROM student_group WHERE student_group_name='32INF-SSI-NP'),
-#        (SELECT subject_id FROM subject_list WHERE subject_name='Programowanie gier 3D'),
-#        (SELECT lecturer_id FROM lecturer WHERE login_id=(SELECT login_id FROM user_login WHERE login = 'kwojtylak'))
-#      );
+-- #### INSERT INTO subject_group (student_group_id, subject_id, lecturer_id)  VALUES
+-- #      (
+-- #        (SELECT student_group_id FROM student_group WHERE student_group_name='32INF-SSI-NP'),
+-- #        (SELECT subject_id FROM subject_list WHERE subject_name='Programowanie gier 3D'),
+-- #        (SELECT lecturer_id FROM lecturer WHERE login_id=(SELECT login_id FROM user_login WHERE login = 'kwojtylak'))
+-- #      );
