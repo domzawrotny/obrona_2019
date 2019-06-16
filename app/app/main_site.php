@@ -1,6 +1,7 @@
     
 <?php
  session_start();
+ require_once ('connect.php');
  #if (!isSet($_SESSION['signed_in']) || ($_SESSION['permissions']!=2) ) {
  if (!isSet($_SESSION['signed_in'])) {
      header('Location: index.php');
@@ -148,132 +149,43 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Data i miejsce</h4>
+                                <h4 class="title">Data</h4>
                             </div>
                             <div class="content">
-                                 <form>
+                                 <form action="main_site.php" method="post">
                                     <div class="row">
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <input type="Date" class="form-control" placeholder="Wybierz datę" value="2005-04-02">
+                                                <input type="Date" class="form-control" placeholder="Wybierz datę" value="2005-04-02" name="selected_date">
                                             </div>
                                         </div>
                                         <div class="col-md-2">
-                                            <button type="submit" class="btn btn-info btn-fill btn-block pull-right">Wybierz</button>
+                                            <a href="main_site.php"><button type="submit" class="btn btn-info btn-fill btn-block pull-right">Wybierz</button></a>
                                         </div>
-                                        
+
+                                        <?php
+                                        if (isSet($_POST['selected_date'])) {
+                                            ?>
+                                            <script type="text/javascript">
+                                                $(document).ready(function(){
+
+                                                    demo.initChartist();
+
+                                                    $.notify({
+                                                        icon: 'pe-7s-close-circle',
+                                                        message: "<?php echo $_POST['selected_date'] ?>"
+                                                    },{
+                                                        type: 'danger',
+                                                        timer: 4000
+                                                    });
+
+                                                });
+                                            </script>
+                                            <?php
+                                        }
+                                        ?>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <label>Wydział</label>
-                                            <div class="dropdown">
-                                            <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Wydział Akrobatyki i Dmuchania Ryżu</button>
-                                                <ul class="dropdown-menu min-width: 100%">
-                                                    <?php
-                                                        require_once ('connect.php');
-                                                        $db_connection = new DatabaseConnection();
-                                                        $db_connection->establishConnection();
 
-                                                        if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
-                                                            echo "Error occured while attempting to connect to the datebase!<br/>";
-                                                            #die;
-                                                        }
-                                                        else {
-                                                            $query = "SELECT * from faculty";
-
-                                                            $result = $db_connection->getCurrentDBConnection()->query($query);
-
-                                                            while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)): ?>
-                                                                <li><a href="#"><?= $row['faculty_name'] ?></a></li>
-                                                            <?php endwhile; ?>
-                                                    <?php
-                                                        }
-                                                        $db_connection->dropCurrentConnection();
-                                                    ?>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-<!--                                        <div class="col-md-4">-->
-<!--                                            <label>Instytut</label>-->
-<!--                                            <div class="dropdown">-->
-<!--                                            <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Instytut Skoków w dal</button>-->
-<!--                                                <ul class="dropdown-menu min-width: 100%">-->
-<!--                                                    <li><a href="#">Instytut Skoków w Bok</a></li>-->
-<!--                                                    <li><a href="#">Instytut Risotto</a></li>-->
-<!---->
-<!--                                                </ul>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-                                        <div class="col-md-4">
-                                                <label>Budynek</label>
-                                                <div class="dropdown">
-                                                <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">A-0</button>
-                                                        <ul class="dropdown-menu min-width: 100%">
-<!--                                                            <li><a href="#">A-2</a></li>-->
-<!--                                                            <li><a href="#">A-29</a></li>-->
-<!--                                                            <li class="divider"></li>-->
-                                                            <?php
-                                                            require_once ('connect.php');
-                                                            $db_connection = new DatabaseConnection();
-                                                            $db_connection->establishConnection();
-
-                                                            if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
-                                                                echo "Error occured while attempting to connect to the datebase!<br/>";
-                                                                #die;
-                                                            }
-                                                            else {
-                                                                $query = "SELECT * from building";
-
-                                                                $result = $db_connection->getCurrentDBConnection()->query($query);
-
-                                                                while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)): ?>
-                                                                    <li><a href="#"><?= $row['building_name'] ?></a></li>
-                                                                <?php endwhile; ?>
-                                                                <?php
-                                                            }
-                                                            $db_connection->dropCurrentConnection();
-                                                            ?>
-                                                        </ul>
-                                                </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label>Sala</label>
-                                            <div class="dropdown">
-                                            <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">02</button>
-                                                    <ul class="dropdown-menu min-width: 100%">
-<!--                                                        <li><a href="#">02</a></li>-->
-<!--                                                        <li><a href="#">04</a></li>-->
-<!--                                                        <li><a href="#">05</a></li>-->
-<!--                                                        <li class="divider"></li>-->
-<!--                                                        <li><a href="#">21</a></li>-->
-<!--                                                        <li><a href="#">37</a></li>-->
-<!--                                                        <li class="divider"></li>-->
-                                                        <?php
-                                                        require_once ('connect.php');
-                                                        $db_connection = new DatabaseConnection();
-                                                        $db_connection->establishConnection();
-
-                                                        if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
-                                                            echo "Error occured while attempting to connect to the datebase!<br/>";
-                                                            #die;
-                                                        }
-                                                        else {
-                                                            $query = "SELECT * from room";
-
-                                                            $result = $db_connection->getCurrentDBConnection()->query($query);
-
-                                                            while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)): ?>
-                                                                <li><a href="#"><?= $row['room_name'] ?></a></li>
-                                                            <?php endwhile; ?>
-                                                            <?php
-                                                        }
-                                                        $db_connection->dropCurrentConnection();
-                                                        ?>
-                                                    </ul>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="clearfix"></div>
                                 </form>
                             </div>
@@ -286,78 +198,117 @@
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">Wykaz egzaminów</h4>
-                                <p class="category">Dla dnia XX.XX.XXXX</p>
+                                <?php
+
+                                if (!isSet($_POST['selected_date'])) {
+                                    echo "Prosze wybrac date!";
+                                }
+                                else {
+                                    $selected_date = $_POST['selected_date'];
+
+
+                                    echo '<p class="category">Dla dnia ' . $selected_date . '</p>';
+                                }
+
+                                ?>
+
                             </div>
                             <div class="content table-responsive table-full-width">
-                                <table class="table table-hover table-striped">
-                                    <thead>
-                                        <th>Godz.</th>
-                                    	<th>Przewodniczący</th>
-                                    	<th>Promotor</th>
-                                    	<th>Recenzent</th>
-                                        <th>Dyplomant</th>
-                                        <th>Edycja</th>
-                                        <th>Usuwanie</th>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                        	<td>7:00</td>
-                                        	<td>Prof. dr hab. Ambroży Kleks</td>
-                                        	<td>Dr Krzysztof Wstrząs</td>
-                                        	<td>Dr Grzegorz Domek</td>
-                                            <td>Karol Wykopek</td>
-                                            <td><a href="#">Edytuj</a></td>
-                                            <td><a href="#">Usuń</a></td>
-                                        </tr>
-                                        <tr>
-                                        	<td>7:15</td>
-                                        	<td>Prof. dr hab. Ambroży Kleks</td>
-                                        	<td>Dr Krzysztof Wstrząs</td>
-                                        	<td>Dr Grzegorz Domek</td>
-                                            <td>Paweł Jumper</td>
-                                            <td><a href="#">Edytuj</a></td>
-                                            <td><a href="#">Usuń</a></td>
-                                        </tr>
-                                        <tr>
-                                        	<td>7:30</td>
-                                        	<td>Prof. dr hab. Ambroży Kleks</td>
-                                        	<td>Dr Krzysztof Wstrząs</td>
-                                        	<td>Dr Grzegorz Domek</td>
-                                            <td>Sasza Szara</td>
-                                            <td><a href="#">Edytuj</a></td>
-                                            <td><a href="#">Usuń</a></td>
-                                        </tr>
-                                        <tr>
-                                        	<td>7:45</td>
-                                        	<td>Prof. dr hab. Jan Tadeusz Stanisławski</td>
-                                        	<td>Dr Paweł Jubicz</td>
-                                        	<td>Dr Michalina Quinn</td>
-                                            <td>Jacek Kaczyński</td>
-                                            <td><a href="#">Edytuj</a></td>
-                                            <td><a href="#">Usuń</a></td>
-                                        </tr>
-                                        <tr>
-                                        	<td>8:00</td>
-                                        	<td>Prof. dr hab. Jan Tadeusz Stanisławski</td>
-                                        	<td>Dr Paweł Jubicz</td>
-                                        	<td>Dr Michalina Quinn</td>
-                                            <td>Placek Kaczyński</td>
-                                            <td><a href="#">Edytuj</a></td>
-                                            <td><a href="#">Usuń</a></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+
+                                <?php
+                                if (isSet($selected_date)) {
+                                    $db_connection = new DatabaseConnection();
+                                    $db_connection->establishConnection();
+
+                                    $query = "SELECT COUNT(*) as total_count FROM exam_commission WHERE exam_date = '$selected_date'";
+
+                                    $db_connection->getCurrentDBConnection()->query($query);
+                                    if (!($result = @$db_connection->getCurrentDBConnection()->query($query))) {
+                                        echo "Invalid query!";
+                                    }
+                                    else {
+                                        while ($row = $result->fetch_assoc()) {
+                                            $number_of_exams = $row['total_count'];
+                                        }
+                                    }
+
+
+
+                                    if ($number_of_exams == 0) {
+                                        echo "Brak egzaminów w danym dniu!"."</br>";
+                                    }
+                                    else {
+                                        $query = "SELECT  r.room_name
+                                                        , b.building_name
+                                                        , CONCAT(l.title,' ',l.surname,' ',l.firstname) AS `head_fullname`
+                                                        , ec.exam_date
+                                                        , ec.start_time
+                                                        , ec.end_time
+                                                        , ec.exam_commission_id
+                                                FROM exam_commission AS ec
+                                                    INNER JOIN lecturer l on ec.PK_leader_id = l.lecturer_id
+                                                    INNER JOIN room r on ec.PK_room_id = r.room_id
+                                                    INNER JOIN building b on r.PK_bulding_id = b.building_id
+                                                WHERE ec.exam_date = '$selected_date'";
+
+                                        if (!($result = @$db_connection->getCurrentDBConnection()->query($query))) {
+                                            echo "Invalid query!";
+                                        }
+                                        else {
+                                            ?>
+                                            <table class="table table-hover table-striped">
+                                            <thead>
+                                                <th>Budynek</th>
+                                                <th>Sala</th>
+                                                <th>Przewodniczacy komisji</th>
+                                                <th>Data</th>
+                                                <th>Poczatek</th>
+                                                <th>Koniec</th>
+                                                <th></th>
+                                            </thead>
+                                            <tbody>
+                                            <?php
+                                            while ($row = $result->fetch_assoc()) {
+                                                ?>
+                                                <tr>
+                                                    <td><?php echo $row['building_name']; ?></td>
+                                                    <td><?php echo $row['room_name']; ?></td>
+                                                    <td><?php echo $row['head_fullname']; ?></td>
+                                                    <td><?php echo $row['exam_date']; ?></td>
+                                                    <td><?php echo $row['start_time']; ?></td>
+                                                    <td><?php echo $row['end_time']; ?></td>
+                                                    <td>
+<!--                                                        <a href="">Usuń</a>-->
+                                                        <div class="col-md-8">
+                                                            <button type="submit" class="btn btn-info btn-fill btn-block" onclick="location.href='get_exam_card.php?exam_commission_id=<?php echo $row['exam_commission_id'] ?>&selected_date=<?php echo $selected_date ?>&room_name=<?php echo  $row['room_name']  ?>'">Generuj kartę</button>
+                                                        </div>
+
+                                                    </td>
+                                                </tr>
+
+                                                <?php
+
+                                            }
+                                            ?>
+                                            </tbody>
+                                            </table>
+                                            <?php
+                                        }
+                                    }
+
+                                }
+                                ?>
                                 <div class="content">
                                     <div class="row">
                                         <div class="col-md-8">
                                         </div>
                                         <div class="col-md-2">
-                                        <button type="submit" class="btn btn-info btn-fill btn-block" href="add_card.php">Nowa karta</button>
+                                        <button type="submit" class="btn btn-info btn-fill btn-block" onclick="location.href='add_card.php'">Nowy egzamin</button>
                                         </div>
                                         <div class="col-md-1">
                                         </div>
                                         <div class="col-md-2">
-                                        <button type="submit" class="btn btn-success btn-fill btn-block">Generuj raport</button>
+                                        <button type="submit" class="btn btn-success btn-fill btn-block" onclick="location.href='generate_card.php'">Generuj raport</button>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>

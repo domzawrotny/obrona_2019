@@ -152,225 +152,524 @@
                                 <p class="category">Wybierz lub wpisz wartości w poniższych kategoriach</p>
                             </div>
                             <div class="content">
-                                 <form>
+                                <form action="validate_exam.php" method="post" id="add_new_exam">
                                     <div class="row">
-                                    <div class="header">
-                                      <h5 class="title">Czas i miejsce</h5>
-                                    </div>
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <input type="date" class="form-control" placeholder="Wybierz datę" value="2005-04-02">
-                                            </div>
+                                        <div class="header">
+                                            <h5 class="title">Czas i miejsce</h5>
                                         </div>
                                         <div class="col-md-2">
-                                            <button type="submit" class="btn btn-info btn-fill btn-block pull-right">Wybierz</button>
+                                            <div class="form-group">
+                                                <input type="date" class="form-control" placeholder="Wybierz datę" value="2005-04-02" name="date">
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-5">
-                                                <label>Wydział</label>
-                                                <div class="dropdown">
-                                                <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Wydział Akrobatyki i Dmuchania Ryżu</button>
-                                                        <ul class="dropdown-menu min-width: 100%">
-                                                            <li><a href="#">Wydział Nawijania Makaronu</a></li>
-                                                            <li><a href="#">Wydział Zarządzania i Marketingu</a></li>
-                                                        </ul>
-                                                </div>
+                                            <label>Wydział</label>
+                                            <div class="dropdown">
+                                                <select class="form-control" id="faculty" name="faculty">
+                                                    <option value="" selected disabled hidden>Wybierz wydzial</option>
+                                                    <?php
+                                                    require_once ('connect.php');
+                                                    $db_connection = new DatabaseConnection();
+                                                    $db_connection->establishConnection();
+
+                                                    if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
+                                                        echo "Error occured while attempting to connect to the datebase!<br/>";
+                                                        #die;
+                                                    }
+                                                    else {
+                                                        $query = "SELECT * from faculty";
+
+                                                        $result = $db_connection->getCurrentDBConnection()->query($query);
+
+                                                        while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)): ?>
+                                                            <option><?= $row['faculty_name'] ?></option>
+
+                                                        <?php endwhile; ?>
+                                                        <?php
+                                                    }
+                                                    $db_connection->dropCurrentConnection();
+                                                    ?>
+                                                </select>
+                                            </div>
                                         </div>
-<!--                                        <div class="col-md-4">-->
-<!--                                                <label>Instytut</label>-->
-<!--                                                <div class="dropdown">-->
-<!--                                                <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Instytut Skoków w dal</button>-->
-<!--                                                        <ul class="dropdown-menu min-width: 100%">-->
-<!--                                                            <li><a href="#">Instytut Skoków w Bok</a></li>-->
-<!--                                                            <li><a href="#">Instytut Risotto</a></li>-->
-<!--                                                        </ul>-->
-<!--                                                </div>-->
-<!--                                        </div>-->
                                         <div class="col-md-4">
-                                                <label>Budynek</label>
-                                                <div class="dropdown">
-                                                <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">A-0</button>
-                                                        <ul class="dropdown-menu min-width: 100%">
-                                                            <li><a href="#">A-2</a></li>
-                                                            <li><a href="#">A-29</a></li>
-                                                        </ul>
-                                                </div>
+                                            <label>Budynek</label>
+
+                                            <div class="dropdown">
+                                                <select class="form-control" id="building" name="building">
+                                                    <option value="" selected disabled hidden>Wybierz budynek</option>
+
+                                                    <?php
+                                                    require_once ('connect.php');
+                                                    $db_connection = new DatabaseConnection();
+                                                    $db_connection->establishConnection();
+
+                                                    if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
+                                                        echo "Error occured while attempting to connect to the datebase!<br/>";
+                                                        #die;
+                                                    }
+                                                    else {
+                                                        $query = "SELECT * from building";
+
+                                                        $result = $db_connection->getCurrentDBConnection()->query($query);
+
+                                                        while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)): ?>
+                                                            <option><?= $row['building_name'] ?></option>
+                                                        <?php endwhile; ?>
+                                                        <?php
+                                                    }
+                                                    $db_connection->dropCurrentConnection();
+                                                    ?>
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="col-md-3">
                                             <label>Sala</label>
                                             <div class="dropdown">
-                                            <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">02</button>
-                                                    <ul class="dropdown-menu min-width: 100%">
-                                                        <li><a href="#">02</a></li>
-                                                        <li><a href="#">04</a></li>
-                                                        <li><a href="#">05</a></li>
-                                                        <li class="divider"></li>
-                                                        <li><a href="#">21</a></li>
-                                                        <li><a href="#">37</a></li>
-                                                    </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row">
-                                    <div class="header">
-                                      <h5 class="title">Skład komisji</h5>
-                                    </div>
-                                        <div class="col-md-4">
-                                            <label>Przewodniczący</label>
-                                            <div class="dropdown">
-                                            <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Aciak</button>
-                                                <ul class="dropdown-menu min-width: 100%">
-                                                    <li><a href="#">Beciak</a></li>
-                                                    <li><a href="#">Ceciak</a></li>
-                                                </ul>
+                                                <select class="form-control" id="room" name="room">
+                                                    <option value="" selected disabled hidden>Wybierz sale</option>
+                                                    <?php
+                                                    require_once ('connect.php');
+                                                    $db_connection = new DatabaseConnection();
+                                                    $db_connection->establishConnection();
+
+                                                    if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
+                                                        echo "Error occured while attempting to connect to the datebase!<br/>";
+                                                        #die;
+                                                    }
+                                                    else {
+                                                        $query = "SELECT * from room";
+
+                                                        $result = $db_connection->getCurrentDBConnection()->query($query);
+
+                                                        while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)): ?>
+                                                            <option><?= $row['room_name'] ?></option>
+                                                        <?php endwhile; ?>
+                                                        <?php
+                                                    }
+                                                    $db_connection->dropCurrentConnection();
+                                                    ?>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="row">
-                                    <div class="header">
-                                      <h5 class="title">Dyplomanci</h5>
-                                    </div>                                    
+                                        <div class="header">
+                                            <h5 class="title">Skład komisji</h5>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Przewodniczący</label>
+                                            <div class="dropdown">
+                                                <select class="form-control" id="exam_head" name="exam_head">
+                                                    <option value="" selected disabled hidden>Wybierz przewodniczacego komisji:</option>
+                                                    <?php
+                                                    require_once ('connect.php');
+                                                    $db_connection = new DatabaseConnection();
+                                                    $db_connection->establishConnection();
+
+                                                    if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
+                                                        echo "Error occured while attempting to connect to the datebase!<br/>";
+                                                        #die;
+                                                    }
+                                                    else {
+                                                        $query = "SELECT lecturer_id, CONCAT(title,' ',surname,' ',firstname) as full_lecturer_name FROM lecturer WHERE independent_employee = 1;";
+
+                                                        $result = $db_connection->getCurrentDBConnection()->query($query);
+
+                                                        while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)): ?>
+                                                            <option><?= $row['full_lecturer_name'] ?></option>
+                                                        <?php endwhile; ?>
+                                                        <?php
+                                                    }
+                                                    $db_connection->dropCurrentConnection();
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="header">
+                                            <h5 class="title">Dyplomanci</h5>
+                                        </div>
                                         <div class="col-md-3">
                                             <label>Godzina</label>
                                             <div class="form-group">
-                                                <input type="time" class="form-control" placeholder="Imię i nazwisko">
+                                                <input type="time" class="form-control" placeholder="Imię i nazwisko" name="time">
                                             </div>
                                         </div>
                                     </div>
-                                     <div class="row">
+                                    <div class="row">
                                         <div class="col-md-4">
                                             <label>Dyplomant</label>
                                             <div class="dropdown">
-                                                <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Student</button>
-                                                <ul class="dropdown-menu min-width: 100%">
-                                                    <li><a href="#">Beciak</a></li>
-                                                    <li><a href="#">Ceciak</a></li>
-                                                </ul>
+                                                <select class="form-control" id="student1" name="student1">
+                                                    <option value="" selected disabled hidden>Wybierz dyplomanta</option>
+                                                    <?php
+                                                    require_once ('connect.php');
+                                                    $db_connection = new DatabaseConnection();
+                                                    $db_connection->establishConnection();
+
+                                                    if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
+                                                        echo "Error occured while attempting to connect to the datebase!<br/>";
+                                                        #die;
+                                                    }
+                                                    else {
+                                                        $query = "SELECT student_id,CONCAT(surname,' ',firstname) as full_student_name FROM student";
+
+                                                        $result = $db_connection->getCurrentDBConnection()->query($query);
+
+                                                        while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)): ?>
+                                                            <option><?= $row['full_student_name'] ?></option>
+                                                        <?php endwhile; ?>
+                                                        <?php
+                                                    }
+                                                    $db_connection->dropCurrentConnection();
+                                                    ?>
+
+                                                </select>
                                             </div>
                                         </div>
-                                         <div class="col-md-4">
-                                             <label>Promotor</label>
-                                             <div class="dropdown">
-                                                 <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Student</button>
-                                                 <ul class="dropdown-menu min-width: 100%">
-                                                     <li><a href="#">Beciak</a></li>
-                                                     <li><a href="#">Ceciak</a></li>
-                                                 </ul>
-                                             </div>
-                                         </div>
-                                         <div class="col-md-4">
-                                             <label>Recenzent</label>
-                                             <div class="dropdown">
-                                                 <button type="submit" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Student</button>
-                                                 <ul class="dropdown-menu min-width: 100%">
-                                                     <li><a href="#">Beciak</a></li>
-                                                     <li><a href="#">Ceciak</a></li>
-                                                 </ul>
-                                             </div>
-                                         </div>
-                                         <div class="row">
-                                             <div class="col-md-3">
-                                                 <label>Zatwierdź</label>
-                                                 <button type="submit" class="btn btn-info btn-fill btn-block pull-right">Potwierdź</button>
-                                             </div>
-                                         </div>
+                                        <div class="col-md-4">
+                                            <label>Promotor</label>
+                                            <div class="dropdown">
+                                                <select class="form-control" id="promotor1" name="promotor1">
+                                                    <option value="" selected disabled hidden>Wybierz promotora</option>
+                                                    <?php
+                                                    require_once ('connect.php');
+                                                    $db_connection = new DatabaseConnection();
+                                                    $db_connection->establishConnection();
+
+                                                    if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
+                                                        echo "Error occured while attempting to connect to the datebase!<br/>";
+                                                        #die;
+                                                    }
+                                                    else {
+                                                        $query = "SELECT lecturer_id, CONCAT(title,' ',surname,' ',firstname) as full_lecturer_name FROM lecturer";
+
+                                                        $result = $db_connection->getCurrentDBConnection()->query($query);
+
+                                                        while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)): ?>
+                                                            <option><?= $row['full_lecturer_name'] ?></option>
+                                                        <?php endwhile; ?>
+                                                        <?php
+                                                    }
+                                                    $db_connection->dropCurrentConnection();
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Recenzent</label>
+                                            <div class="dropdown">
+                                                <select class="form-control" id="reviewer1" name="reviewer1">
+                                                    <option value="" selected disabled hidden>Wybierz recenzenta</option>
+                                                    <?php
+                                                    require_once ('connect.php');
+                                                    $db_connection = new DatabaseConnection();
+                                                    $db_connection->establishConnection();
+
+                                                    if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
+                                                        echo "Error occured while attempting to connect to the datebase!<br/>";
+                                                        #die;
+                                                    }
+                                                    else {
+                                                        $query = "SELECT lecturer_id, CONCAT(title,' ',surname,' ',firstname) as full_lecturer_name FROM lecturer ";
+
+                                                        $result = $db_connection->getCurrentDBConnection()->query($query);
+
+                                                        while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)): ?>
+                                                            <option><?= $row['full_lecturer_name'] ?></option>>
+                                                        <?php endwhile; ?>
+                                                        <?php
+                                                    }
+                                                    $db_connection->dropCurrentConnection();
+                                                    ?>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="clearfix"></div>
-                                </form>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="dropdown">
+                                                <select class="form-control" id="student2" name="student2">
+                                                    <option value="" selected disabled hidden>Wybierz dyplomanta</option>
+                                                    <?php
+                                                    require_once ('connect.php');
+                                                    $db_connection = new DatabaseConnection();
+                                                    $db_connection->establishConnection();
+
+                                                    if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
+                                                        echo "Error occured while attempting to connect to the datebase!<br/>";
+                                                        #die;
+                                                    }
+                                                    else {
+                                                        $query = "SELECT student_id,CONCAT(surname,' ',firstname) as full_student_name FROM student";
+
+                                                        $result = $db_connection->getCurrentDBConnection()->query($query);
+
+                                                        while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)): ?>
+                                                            <option><?= $row['full_student_name'] ?></option>
+                                                        <?php endwhile; ?>
+                                                        <?php
+                                                    }
+                                                    $db_connection->dropCurrentConnection();
+                                                    ?>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="dropdown">
+                                                <select class="form-control" id="promotor2" name="promotor2">
+                                                    <option value="" selected disabled hidden>Wybierz promotora</option>
+                                                    <?php
+                                                    require_once ('connect.php');
+                                                    $db_connection = new DatabaseConnection();
+                                                    $db_connection->establishConnection();
+
+                                                    if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
+                                                        echo "Error occured while attempting to connect to the datebase!<br/>";
+                                                        #die;
+                                                    }
+                                                    else {
+                                                        $query = "SELECT lecturer_id, CONCAT(title,' ',surname,' ',firstname) as full_lecturer_name FROM lecturer";
+
+                                                        $result = $db_connection->getCurrentDBConnection()->query($query);
+
+                                                        while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)): ?>
+                                                            <option><?= $row['full_lecturer_name'] ?></option>
+                                                        <?php endwhile; ?>
+                                                        <?php
+                                                    }
+                                                    $db_connection->dropCurrentConnection();
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="dropdown">
+                                                <select class="form-control" id="reviewer2" name="reviewer2">
+                                                    <option value="" selected disabled hidden>Wybierz recenzenta</option>
+                                                    <?php
+                                                    require_once ('connect.php');
+                                                    $db_connection = new DatabaseConnection();
+                                                    $db_connection->establishConnection();
+
+                                                    if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
+                                                        echo "Error occured while attempting to connect to the datebase!<br/>";
+                                                        #die;
+                                                    }
+                                                    else {
+                                                        $query = "SELECT lecturer_id, CONCAT(title,' ',surname,' ',firstname) as full_lecturer_name FROM lecturer ";
+
+                                                        $result = $db_connection->getCurrentDBConnection()->query($query);
+
+                                                        while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)): ?>
+                                                            <option><?= $row['full_lecturer_name'] ?></option>>
+                                                        <?php endwhile; ?>
+                                                        <?php
+                                                    }
+                                                    $db_connection->dropCurrentConnection();
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="dropdown">
+                                                <select class="form-control" id="student3" name="student3">
+                                                    <option value="" selected disabled hidden>Wybierz dyplomanta</option>
+                                                    <?php
+                                                    require_once ('connect.php');
+                                                    $db_connection = new DatabaseConnection();
+                                                    $db_connection->establishConnection();
+
+                                                    if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
+                                                        echo "Error occured while attempting to connect to the datebase!<br/>";
+                                                        #die;
+                                                    }
+                                                    else {
+                                                        $query = "SELECT student_id,CONCAT(surname,' ',firstname) as full_student_name FROM student";
+
+                                                        $result = $db_connection->getCurrentDBConnection()->query($query);
+
+                                                        while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)): ?>
+                                                            <option><?= $row['full_student_name'] ?></option>
+                                                        <?php endwhile; ?>
+                                                        <?php
+                                                    }
+                                                    $db_connection->dropCurrentConnection();
+                                                    ?>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="dropdown">
+                                                <select class="form-control" id="promotor3" name="promotor3">
+                                                    <option value="" selected disabled hidden>Wybierz promotora</option>
+                                                    <?php
+                                                    require_once ('connect.php');
+                                                    $db_connection = new DatabaseConnection();
+                                                    $db_connection->establishConnection();
+
+                                                    if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
+                                                        echo "Error occured while attempting to connect to the datebase!<br/>";
+                                                        #die;
+                                                    }
+                                                    else {
+                                                        $query = "SELECT lecturer_id, CONCAT(title,' ',surname,' ',firstname) as full_lecturer_name FROM lecturer";
+
+                                                        $result = $db_connection->getCurrentDBConnection()->query($query);
+
+                                                        while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)): ?>
+                                                            <option><?= $row['full_lecturer_name'] ?></option>
+                                                        <?php endwhile; ?>
+                                                        <?php
+                                                    }
+                                                    $db_connection->dropCurrentConnection();
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="dropdown">
+                                                <select class="form-control" id="reviewer3" name="reviewer3">
+                                                    <option value="" selected disabled hidden>Wybierz recenzenta</option>
+                                                    <?php
+                                                    require_once ('connect.php');
+                                                    $db_connection = new DatabaseConnection();
+                                                    $db_connection->establishConnection();
+
+                                                    if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
+                                                        echo "Error occured while attempting to connect to the datebase!<br/>";
+                                                        #die;
+                                                    }
+                                                    else {
+                                                        $query = "SELECT lecturer_id, CONCAT(title,' ',surname,' ',firstname) as full_lecturer_name FROM lecturer ";
+
+                                                        $result = $db_connection->getCurrentDBConnection()->query($query);
+
+                                                        while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)): ?>
+                                                            <option><?= $row['full_lecturer_name'] ?></option>>
+                                                        <?php endwhile; ?>
+                                                        <?php
+                                                    }
+                                                    $db_connection->dropCurrentConnection();
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="dropdown">
+                                                <select class="form-control" id="student4" name="student4">
+                                                    <option value="" selected disabled hidden>Wybierz dyplomanta</option>
+                                                    <?php
+                                                    require_once ('connect.php');
+                                                    $db_connection = new DatabaseConnection();
+                                                    $db_connection->establishConnection();
+
+                                                    if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
+                                                        echo "Error occured while attempting to connect to the datebase!<br/>";
+                                                        #die;
+                                                    }
+                                                    else {
+                                                        $query = "SELECT student_id,CONCAT(surname,' ',firstname) as full_student_name FROM student";
+
+                                                        $result = $db_connection->getCurrentDBConnection()->query($query);
+
+                                                        while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)): ?>
+                                                            <option><?= $row['full_student_name'] ?></option>
+                                                        <?php endwhile; ?>
+                                                        <?php
+                                                    }
+                                                    $db_connection->dropCurrentConnection();
+                                                    ?>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="dropdown">
+                                                <select class="form-control" id="promotor4" name="promotor4">
+                                                    <option value="" selected disabled hidden>Wybierz promotora</option>
+                                                    <?php
+                                                    require_once ('connect.php');
+                                                    $db_connection = new DatabaseConnection();
+                                                    $db_connection->establishConnection();
+
+                                                    if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
+                                                        echo "Error occured while attempting to connect to the datebase!<br/>";
+                                                        #die;
+                                                    }
+                                                    else {
+                                                        $query = "SELECT lecturer_id, CONCAT(title,' ',surname,' ',firstname) as full_lecturer_name FROM lecturer";
+
+                                                        $result = $db_connection->getCurrentDBConnection()->query($query);
+
+                                                        while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)): ?>
+                                                            <option><?= $row['full_lecturer_name'] ?></option>
+                                                        <?php endwhile; ?>
+                                                        <?php
+                                                    }
+                                                    $db_connection->dropCurrentConnection();
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="dropdown">
+                                                <select class="form-control" id="reviewer4" name="reviewer4">
+                                                    <option value="" selected disabled hidden>Wybierz recenzenta</option>
+                                                    <?php
+                                                    require_once ('connect.php');
+                                                    $db_connection = new DatabaseConnection();
+                                                    $db_connection->establishConnection();
+
+                                                    if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
+                                                        echo "Error occured while attempting to connect to the datebase!<br/>";
+                                                        #die;
+                                                    }
+                                                    else {
+                                                        $query = "SELECT lecturer_id, CONCAT(title,' ',surname,' ',firstname) as full_lecturer_name FROM lecturer ";
+
+                                                        $result = $db_connection->getCurrentDBConnection()->query($query);
+
+                                                        while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)): ?>
+                                                            <option><?= $row['full_lecturer_name'] ?></option>>
+                                                        <?php endwhile; ?>
+                                                        <?php
+                                                    }
+                                                    $db_connection->dropCurrentConnection();
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label>Zatwierdź</label>
+<!--                                            <input type="button" class="btn btn-info btn-fill btn-block pull-right" value="Potwierdź" >-->
+                                            <a href="validate_exam.php"><button type="submit" class="btn btn-info btn-fill btn-block pull-right">Potwierdz</button></a>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        </form>
                             </div>
                         </div>
                     </div>
                     
                 </div>
-<!--                <div class="row">-->
-<!--                    <div class="col-md-12">-->
-<!--                        <div class="card">-->
-<!--                            <div class="header">-->
-<!--                                <h4 class="title">Wykaz egzaminów</h4>-->
-<!--                                <p class="category">Dla dnia XX.XX.XXXX</p>-->
-<!--                            </div>-->
-<!--                            <div class="content table-responsive table-full-width">-->
-<!--                                <table class="table table-hover table-striped">-->
-<!--                                    <thead>-->
-<!--                                        <th>Godz.</th>-->
-<!--                                    	<th>Przewodniczący</th>-->
-<!--                                    	<th>Promotor</th>-->
-<!--                                    	<th>Recenzent</th>-->
-<!--                                        <th>Dyplomant</th>-->
-<!--                                        <th>Edycja</th>-->
-<!--                                        <th>Usuwanie</th>-->
-<!--                                    </thead>-->
-<!--                                    <tbody>-->
-<!--                                        <tr>-->
-<!--                                        	<td>7:00</td>-->
-<!--                                        	<td>Prof. dr hab. Ambroży Kleks</td>-->
-<!--                                        	<td>Dr Krzysztof Wstrząs</td>-->
-<!--                                        	<td>Dr Grzegorz Domek</td>-->
-<!--                                            <td>Karol Papież</td>                                            -->
-<!--                                            <td><a href="#">Edytuj</a></td>-->
-<!--                                            <td><a href="#">Usuń</a></td>-->
-<!--                                        </tr>-->
-<!--                                        <tr>-->
-<!--                                        	<td>7:15</td>-->
-<!--                                        	<td>Prof. dr hab. Ambroży Kleks</td>-->
-<!--                                        	<td>Dr Krzysztof Wstrząs</td>-->
-<!--                                        	<td>Dr Grzegorz Domek</td>-->
-<!--                                            <td>Paweł Jumper</td>-->
-<!--                                            <td><a href="#">Edytuj</a></td>-->
-<!--                                            <td><a href="#">Usuń</a></td>-->
-<!--                                        </tr>-->
-<!--                                        <tr>-->
-<!--                                        	<td>7:30</td>-->
-<!--                                        	<td>Prof. dr hab. Ambroży Kleks</td>-->
-<!--                                        	<td>Dr Krzysztof Wstrząs</td>-->
-<!--                                        	<td>Dr Grzegorz Domek</td>-->
-<!--                                            <td>Sasza Szara</td>-->
-<!--                                            <td><a href="#">Edytuj</a></td>-->
-<!--                                            <td><a href="#">Usuń</a></td>-->
-<!--                                        </tr>-->
-<!--                                        <tr>-->
-<!--                                        	<td>7:45</td>-->
-<!--                                        	<td>Prof. dr hab. Jan Tadeusz Stanisławski</td>-->
-<!--                                        	<td>Dr Paweł Jubicz</td>-->
-<!--                                        	<td>Dr Michalina Quinn</td>-->
-<!--                                            <td>Jacek Kaczyński</td>-->
-<!--                                            <td><a href="#">Edytuj</a></td>-->
-<!--                                            <td><a href="#">Usuń</a></td>-->
-<!--                                        </tr>-->
-<!--                                        <tr>-->
-<!--                                        	<td>8:00</td>-->
-<!--                                        	<td>Prof. dr hab. Jan Tadeusz Stanisławski</td>-->
-<!--                                        	<td>Dr Paweł Jubicz</td>-->
-<!--                                        	<td>Dr Michalina Quinn</td>-->
-<!--                                            <td>Placek Kaczyński</td>-->
-<!--                                            <td><a href="#">Edytuj</a></td>-->
-<!--                                            <td><a href="#">Usuń</a></td>-->
-<!--                                        </tr>-->
-<!--                                    </tbody>-->
-<!--                                </table>-->
-<!--                                <div class="content">-->
-<!--                                    <div class="row">-->
-<!--                                        <div class="col-md-8">-->
-<!--                                        </div>-->
-<!--                                        <div class="col-md-2">-->
-<!--                                        <button type="submit" class="btn btn-info btn-fill btn-block">Nowa karta</button>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-md-1">-->
-<!--                                        </div>-->
-<!--                                        <div class="col-md-2">-->
-<!--                                        <button type="submit" class="btn btn-success btn-fill btn-block">Generuj raport</button>-->
-<!--                                        </div>-->
-<!--                                        <div class="clearfix"></div>-->
-<!--                                    </div>-->
-<!--                                </div>    -->
-<!--                            </div>-->
-<!--                        </div>-->
-                       
-<!--                    </div>-->
+
                     
 
         <footer class="footer">
@@ -414,7 +713,7 @@
 	<script src="assets/js/demo.js"></script>
 
     <?php
-        if (isSet($_SESSION['error'])) {
+        if (isSet($_SESSION['v_error'])) {
             ?>
             <script type="text/javascript">
             $(document).ready(function(){
@@ -423,7 +722,7 @@
         
                 $.notify({
                     icon: 'pe-7s-close-circle',
-                    message: "<?php echo $_SESSION['error'] ?>"
+                    message: "<?php echo $_SESSION['v_error'] ?>"
                 },{
                     type: 'danger',
                     timer: 4000
@@ -434,7 +733,27 @@
         <?php
         }
     ?>
-    
+    <?php
+    if (isSet($_SESSION['exam_commission'])) {
+        ?>
+        <script type="text/javascript">
+            $(document).ready(function(){
+
+                demo.initChartist();
+
+                $.notify({
+                    icon: 'pe-7s-check',
+                    message: "<?php echo $_SESSION['exam_commission'] ?>"
+                },{
+                    type: 'success',
+                    timer: 4000
+                });
+
+            });
+        </script>
+        <?php
+    }
+    ?>
   
 
 
