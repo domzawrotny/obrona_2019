@@ -6,6 +6,11 @@
         header('Location: index.php');
         exit();
     }
+
+    if (isSet($_SESSION['faculty_id'])) {
+        unset($_SESSION['faculty_id']);
+    }
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -226,14 +231,25 @@
                                                         }
                                                         else {
                                                             while ($row = $result->fetch_assoc()) {
-                                                                $number_of_exams = $row['total_count'];
+                                                                $number_of_institutes = $row['total_count'];
                                                             }
                                                         }
 
 
 
-                                                        if ($number_of_exams == 0) {
+                                                        if ($number_of_institutes == 0) {
                                                             echo "Brak instytutów dla zadanego wydzialu!"."</br>";
+
+                                                            $query = "SELECT faculty_id FROM faculty WHERE faculty_name = '$faculty'";
+                                                            $db_connection->getCurrentDBConnection()->query($query);
+                                                            if (!($result = @$db_connection->getCurrentDBConnection()->query($query))) {
+                                                                echo "Invalid query!";
+                                                            }
+                                                            else {
+                                                                while ($row = $result->fetch_assoc()) {
+                                                                    $faculty_id = $row['faculty_id'];
+                                                                }
+                                                            }
                                                         }
                                                         else {
                                                             $query = "SELECT   i.PK_institute_id
@@ -386,6 +402,26 @@
     unset($_SESSION['error']);
 }
 ?>
+<?php
+if (isSet($_SESSION['institute_added'])) {
+    ?>
+    <script type="text/javascript">
+        $(document).ready(function(){
 
+            demo.initChartist();
+
+            $.notify({
+                icon: 'pe-7s-check',
+                message: "<?php echo $_SESSION['institute_added'] ?>"
+            },{
+                type: 'success',
+                timer: 4000
+            });
+
+        });
+    </script>
+    <?php
+}
+?>
 
 </html>

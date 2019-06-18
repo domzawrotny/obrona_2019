@@ -134,8 +134,21 @@ if (!isSet($_SESSION['signed_in'])) {
             </div>
         </nav>
         <div class="content">
-        </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Dodaj instytut</h4>
+                            </div>
 
+                            <div class="content table-responsive table-full-width">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 </body>
 
