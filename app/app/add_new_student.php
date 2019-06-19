@@ -49,12 +49,6 @@
 <div class="wrapper">
     <div class="sidebar" data-color="green" data-image="assets/img/sidebar-5.jpg">
 
-        <!--
-
-            Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-            Tip 2: you can also add an image using data-image tag
-
-        -->
 
         <div class="sidebar-wrapper">
             <div class="logo">
@@ -166,33 +160,19 @@
                                         <input type="text" name="surname" value="" size="30"><br/>
                                         <b>PESEL: </b><br/>
                                         <input type="text" name="pesel" value="" size="30" maxlength="11"><br/>
-                                        <?php
-                                        if (isSet($_SESSION['pesel_error'])){
-                                            echo $_SESSION['pesel_error'];
-                                        }
-
-                                        ?>
                                         <b>Password:</b><br/>
                                         <input type="password" name="user_password" value="" size="30"><br/>
                                         <b>Repeat password:</b><br/>
                                         <input type="password" name="r_user_password" value="" size="30"><br/>
-                                        <?php
-
-//                                        if(isSet($_SESSION['p_error'])) {
-//                                            echo $_SESSION['p_error'];
-//                                        }
-
-                                        ?>
                                         <b>City:</b><br/>
                                         <input type="text" name="city" value="" size="30" maxlength="20"><br/>
                                         <b>Street:</b><br/>
                                         <input type="text" name="street" value="" size="30" maxlength="20"><br/>
                                         <b>House no:</b><br/>
                                         <input type="text" name="house_no" value="" size="30" maxlength="4"><br/><br/>
-<!--                                        <input type="submit" value="Add new student">-->
-<!--                                        <div class="col-md-2">-->
+
                                             &nbsp;&nbsp; <a href="new_student.php"><button type="submit" class="btn btn-info btn-fill">Dodaj studenta</button></a>
-<!--                                        </div>-->
+
                                     </form>
 
                                 </div>
@@ -345,10 +325,6 @@
 //        unset($_SESSION['surname_error']);
     }
 ?>
-
-
-
-
 
 
 </html>

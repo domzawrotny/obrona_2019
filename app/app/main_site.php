@@ -66,31 +66,31 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="personel.php">
                         <i class="pe-7s-id"></i>
                         <p>Personel</p>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="institutes.php">
                         <i class="pe-7s-study"></i>
                         <p>Instytuty</p>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="rooms.php">
                         <i class="pe-7s-door-lock"></i>
                         <p>Sale</p>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="buildings.php">
                         <i class="pe-7s-home"></i>
                         <p>Budynki</p>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="profile.php">
                         <i class="pe-7s-user"></i>
                         <p>Twój profil</p>
                     </a>
