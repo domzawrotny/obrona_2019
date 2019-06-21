@@ -238,8 +238,7 @@
                                         echo "Brak egzaminów w danym dniu!"."</br>";
                                     }
                                     else {
-                                        $query = "SELECT  r.room_name
-                                                        , b.building_name
+                                        $query = "SELECT  CONCAT( b.building_name , ' ' , r.room_name ) AS `room_number`
                                                         , CONCAT(l.title,' ',l.surname,' ',l.firstname) AS `head_fullname`
                                                         , ec.exam_date
                                                         , ec.start_time
@@ -258,9 +257,7 @@
                                             ?>
                                             <table class="table table-hover table-striped">
                                             <thead>
-                                                <th>Budynek</th>
                                                 <th>Sala</th>
-                                                <th>Przewodniczacy komisji</th>
                                                 <th>Data</th>
                                                 <th>Poczatek</th>
                                                 <th>Koniec</th>
@@ -271,8 +268,7 @@
                                             while ($row = $result->fetch_assoc()) {
                                                 ?>
                                                 <tr>
-                                                    <td><?php echo $row['building_name']; ?></td>
-                                                    <td><?php echo $row['room_name']; ?></td>
+                                                    <td><?php echo $row['room_number']; ?></td>
                                                     <td><?php echo $row['head_fullname']; ?></td>
                                                     <td><?php echo $row['exam_date']; ?></td>
                                                     <td><?php echo $row['start_time']; ?></td>

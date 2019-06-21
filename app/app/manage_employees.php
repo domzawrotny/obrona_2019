@@ -134,6 +134,31 @@ if (!isSet($_SESSION['signed_in'])) {
             </div>
         </nav>
         <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Zarzadzaj pracownikami instytutu</h4>
+                            </div>
+                                <div class="content">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-2">
+                                        <button type="submit" class="btn btn-success btn-fill btn-block" onclick="location.href='add_employee.php">Dodaj pracownika</button>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-2">
+                                        <button type="submit" class="btn btn-danger btn-fill btn-block" onclick="location.href='delete_employee.php">Potwierdz usuniecie</button>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
 

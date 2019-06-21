@@ -6,6 +6,9 @@ if (!isSet($_SESSION['signed_in'])) {
     header('Location: index.php');
     exit();
 }
+
+
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -139,16 +142,130 @@ if (!isSet($_SESSION['signed_in'])) {
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Dodaj instytut</h4>
+                                <h4 class="title">Budynki</h4>
                             </div>
-
                             <div class="content table-responsive table-full-width">
+                                <div class="content">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="header">
+                                                <h4 class="title"> Budynki </h4>
+                                                <div class="content table-responsive table-full-width">
+
+                                                    <?php
+
+                                                    $db_connection = new DatabaseConnection();
+                                                    $db_connection->establishConnection();
+
+                                                if ($db_connection->getCurrentDBConnection()->connect_errno != 0) {
+                                                    echo "Error occured while attempting to connect to the datebase!<br/>";
+                                                    #die;
+                                                }
+                                                else {
+                                                    $query = "SELECT  building_id
+                                                                    , building_name
+                                                                    FROM building
+                                                                    ";
+
+                                                    if (!($result = @$db_connection->getCurrentDBConnection()->query($query))) {
+                                                        echo "Invalid query!";
+                                                        echo $query;
+                                                    }
+                                                    else {
+
+
+                                                        ?>
+                                                        <table class="table table-hover table-striped">
+                                                            <thead>
+                                                            <th>Lp</th>
+                                                            <th>Nazwa budynku</th>
+                                                            <th></th>
+                                                            <!--                                                                    <th></th>-->
+                                                            </thead>
+                                                            <tbody>
+                                                            <?php
+                                                            $count = 1;
+                                                            while ($row = $result->fetch_assoc()) {
+//                                                                $room_id = $row['room_id'];
+                                                                ?>
+                                                                <tr>
+                                                                    <td><?php echo $count; ?></td>
+                                                                    <td><?php echo $row['building_name']; ?></td>
+
+                                                                    <td>
+                                                                        <!--                                                        <a href="">Usuń</a>-->
+                                                                        <div class="col-sm-1">
+                                                                        </div>
+                                                                        <!--                                                        <a href="">Usuń</a>-->
+                                                                        <div class="col-md-3">
+                                                                            <button type="submit"
+                                                                                    class="btn btn-danger btn-fill btn-block"
+                                                                                    onclick="location.href='delete_building.php?building_name=<?php echo $row['building_name'] ?>'">
+                                                                                Usun budynek
+                                                                            </button>
+                                                                        </div>
+
+                                                                    </td>
+                                                                </tr>
+
+                                                                <?php
+                                                                $count++;
+                                                            }
+                                                            ?>
+                                                            </tbody>
+                                                        </table>
+                                                        <?php
+                                                    }
+                                                }
+
+                                                    ?>
+                                                    <div class="content">
+                                                        <div class="row">
+                                                            <div class="col-md-9">
+                                                            </div>
+
+                                                            <div class="col-md-3">
+                                                                <button type="submit" class="btn btn-success btn-fill btn-block" onclick="location.href='new_building.php'">Dodaj nowy budynek</button>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
+
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <nav class="pull-left">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        Powrót do góry
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </nav>
+                        <p class="copyright pull-right">
+                            &copy; <script>document.write(new Date().getFullYear())</script> <a href="https://www.uz.zgora.pl/">Uniwersytet Zielonogórski</a>
+                        </p>
+                    </div>
+                </footer>
+
             </div>
         </div>
+
 
 </body>
 
@@ -188,6 +305,27 @@ if (isSet($_SESSION['error'])) {
     </script>
     <?php
     unset($_SESSION['error']);
+}
+?>
+<?php
+if (isSet($_SESSION['institute_added'])) {
+    ?>
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            demo.initChartist();
+
+            $.notify({
+                icon: 'pe-7s-check',
+                message: "<?php echo $_SESSION['institute_added'] ?>"
+            },{
+                type: 'success',
+                timer: 4000
+            });
+
+        });
+    </script>
+    <?php
 }
 ?>
 

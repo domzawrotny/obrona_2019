@@ -8,8 +8,29 @@ if (!isSet($_SESSION['signed_in'])) {
 }
 
 if (isSet($_GET['institute_id'])) {
-//    $faculty_id = $_GET['faculty_id'];
-    $_SESSION['institute_id'] = $_GET['institute_id'];
+
+        $institute_id = $_GET['institute_id'];
+
+        $db_connection = new DatabaseConnection();
+        $db_connection->establishConnection();
+
+        if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
+            echo "Error occured while attempting to connect to the datebase!<br/>";
+            #die;
+        }
+        else {
+            $query = "DELETE FROM institute WHERE PK_institute_id='$institute_id'";
+
+            if (!($result_1 = $db_connection->getCurrentDBConnection()->query($query))) {
+                echo "An error occurred in the query!<br/>";
+            }
+            else {
+                echo "Institute deleted!";
+                $_SESSION['inst_deleted'] = 'Instytut usuniety!';
+                header('Location: institutes.php');
+            }
+        }
+        $db_connection->dropCurrentConnection();
 }
 
 //if (isSet($_GET['delete_institute']) ) {
@@ -18,30 +39,7 @@ if (isSet($_GET['institute_id'])) {
 //
 //        $_SESSION['inst_deleted'] = 'Instytut usuniety!';
 
-//        $institute_id = $_SESSION['institute_id'];
-//        if (isSet($institute_id)) {
-//            $db_connection = new DatabaseConnection();
-//            $db_connection->establishConnection();
-//
-//            if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
-//                echo "Error occured while attempting to connect to the datebase!<br/>";
-//                #die;
-//            }
-//            else {
-//                $query = "DELETE FROM institute WHERE PK_institute_id='$institute_id'";
-//
-//                if (!($result_1 = $db_connection->getCurrentDBConnection()->query($query))) {
-//                    echo "An error occurred in the query!<br/>";
-//                }
-//                else {
-//                    echo "Institute deleted!";
-//                    $_SESSION['inst_deleted'] = 'Instytut usuniety!';
-//                    header('Location: institutes.php');
-//                }
-//            }
-//            $db_connection->dropCurrentConnection();
-//
-//        }
+
 
 //    }
 //    else {
@@ -191,7 +189,7 @@ if (isSet($_GET['institute_id'])) {
                             </div>
                             <div class="content table-responsive table-full-width">
                                 <div class="content">
-                                    <form action="delete_institute.php" method="post" id="delete_ints">
+                                    <form action="delete_institute.php" method="GET" id="delete_institute">
                                         <div class="col-md-1">
                                         </div>
 

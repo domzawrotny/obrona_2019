@@ -6,6 +6,9 @@ if (!isSet($_SESSION['signed_in'])) {
     header('Location: index.php');
     exit();
 }
+
+
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -139,16 +142,220 @@ if (!isSet($_SESSION['signed_in'])) {
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Dodaj instytut</h4>
+                                <h4 class="title">Sale</h4>
                             </div>
-
                             <div class="content table-responsive table-full-width">
+                                <div class="content">
+                                    <form action="rooms.php" method="post" id="room">
+
+                                        <div class="row">
+                                            <div class="header">
+                                                <h5 class="title">Budynki</h5>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="dropdown">
+                                                    <select class="form-control" id="building" name="building">
+                                                        <option value="" selected disabled hidden>Wybierz budynek</option>
+                                                        <?php
+                                                        require_once ('connect.php');
+                                                        $db_connection = new DatabaseConnection();
+                                                        $db_connection->establishConnection();
+
+                                                        if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
+                                                            echo "Error occured while attempting to connect to the datebase!<br/>";
+                                                            #die;
+                                                        }
+                                                        else {
+                                                            $query = "SELECT * FROM building";
+
+                                                            $result = $db_connection->getCurrentDBConnection()->query($query);
+
+                                                            while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)): ?>
+                                                                <option><?= $row['building_name'] ?></option>
+                                                            <?php endwhile; ?>
+                                                            <?php
+                                                        }
+                                                        $db_connection->dropCurrentConnection();
+                                                        ?>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label>Zatwierdź</label>
+                                                <!--                                            <input type="button" class="btn btn-info btn-fill btn-block pull-right" value="Potwierdź" >-->
+                                                <a href="rooms.php"><button type="submit" class="btn btn-success btn-fill btn-block pull-right">Potwierdz</button></a>
+                                            </div>
+
+                                        </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="header">
+                                                <h4 class="title"> Sale </h4>
+                                                <?php
+
+                                                if (!isSet($_POST['building'])) {
+                                                    echo "Prosze wybrac budynek!";
+                                                }
+                                                else {
+                                                    $building = $_POST['building'];
+
+
+                                                    echo '<p class="category">Dla budynku: ' . $building . '</p>';
+                                                }
+
+                                                ?>
+                                                <div class="content table-responsive table-full-width">
+
+                                                    <?php
+                                                    if (isSet($building)) {
+                                                        unset($_SESSION['room_added']);
+                                                        $db_connection = new DatabaseConnection();
+                                                        $db_connection->establishConnection();
+
+                                                        $query = "SELECT COUNT(*) as total_count FROM room AS r INNER JOIN building b on r.PK_bulding_id = b.building_id WHERE b.building_name = '$building'";
+
+                                                        $db_connection->getCurrentDBConnection()->query($query);
+                                                        if (!($result = @$db_connection->getCurrentDBConnection()->query($query))) {
+                                                            echo "Invalid query!";
+                                                        }
+                                                        else {
+                                                            while ($row = $result->fetch_assoc()) {
+                                                                $number_of_rooms = $row['total_count'];
+                                                            }
+                                                        }
+
+
+
+                                                        if ($number_of_rooms == 0) {
+                                                            echo "Brak pomieszczen w danym budynku!"."</br>";
+
+                                                            $query = "SELECT bulding_id FROM building WHERE building_name = '$building'";
+                                                            $db_connection->getCurrentDBConnection()->query($query);
+                                                            if (!($result = @$db_connection->getCurrentDBConnection()->query($query))) {
+                                                                echo "Invalid query!";
+                                                            }
+                                                            else {
+                                                                while ($row = $result->fetch_assoc()) {
+                                                                    $building_id = $row['building_id'];
+                                                                }
+                                                            }
+                                                        }
+                                                        else {
+                                                            $query = "SELECT  r.room_name
+                                                                            , b.building_name
+                                                                            , r.room_id
+                                                                            , b.building_id
+                                                                            , CONCAT(r.room_name, ' ' , b.building_name ) as `full_room_name`
+                                                                    FROM room AS r
+                                                                        INNER JOIN building b on r.PK_bulding_id = b.building_id
+                                                                    WHERE b.building_name = '$building';
+                                                                    ";
+
+//                                                            echo $query;
+
+                                                            if (!($result = @$db_connection->getCurrentDBConnection()->query($query))) {
+                                                                echo "Invalid query!";
+                                                            }
+                                                            else {
+                                                                $building_id = $row['building_id'];
+                                                                echo $building_id;
+                                                                ?>
+                                                                <table class="table table-hover table-striped">
+                                                                    <thead>
+                                                                    <th>Lp</th>
+                                                                    <th>Nazwa sali</th>
+                                                                    <th></th>
+                                                                    <!--                                                                    <th></th>-->
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <?php
+                                                                    $count = 1;
+                                                                    while ($row = $result->fetch_assoc()) {
+                                                                        $room_id = $row['room_id'];
+                                                                        ?>
+                                                                        <tr>
+                                                                            <td><?php echo $count; ?></td>
+                                                                            <td><?php echo $row['full_room_name']; ?></td>
+
+                                                                            <td>
+                                                                                <!--                                                        <a href="">Usuń</a>-->
+                                                                                <div class="col-sm-1">
+                                                                                </div>
+                                                                                <!--                                                        <a href="">Usuń</a>-->
+                                                                                <div class="col-md-3">
+                                                                                    <button type="submit" class="btn btn-danger btn-fill btn-block" onclick="location.href='delete_room.php?room_id=<?php echo $row['room_id'] ?>'"> Usun sale</button>
+                                                                                </div>
+
+                                                                            </td>
+                                                                        </tr>
+
+                                                                        <?php
+                                                                        $count++;
+                                                                    }
+                                                                    ?>
+                                                                    </tbody>
+                                                                </table>
+                                                                <?php
+                                                            }
+                                                        }
+                                                    }
+                                                    ?>
+                                                    <div class="content">
+                                                        <div class="row">
+                                                            <div class="col-md-9">
+                                                            </div>
+
+                                                            <div class="col-md-3">
+                                                                <button type="submit" class="btn btn-success btn-fill btn-block" onclick="location.href='new_room.php?building=<?php echo $building ?>'">Dodaj nowa sale</button>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
+
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <nav class="pull-left">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        Powrót do góry
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </nav>
+                        <p class="copyright pull-right">
+                            &copy; <script>document.write(new Date().getFullYear())</script> <a href="https://www.uz.zgora.pl/">Uniwersytet Zielonogórski</a>
+                        </p>
+                    </div>
+                </footer>
+
             </div>
         </div>
+
 
 </body>
 
@@ -188,6 +395,27 @@ if (isSet($_SESSION['error'])) {
     </script>
     <?php
     unset($_SESSION['error']);
+}
+?>
+<?php
+if (isSet($_SESSION['institute_added'])) {
+    ?>
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            demo.initChartist();
+
+            $.notify({
+                icon: 'pe-7s-check',
+                message: "<?php echo $_SESSION['institute_added'] ?>"
+            },{
+                type: 'success',
+                timer: 4000
+            });
+
+        });
+    </script>
+    <?php
 }
 ?>
 

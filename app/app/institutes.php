@@ -437,7 +437,7 @@ if (isSet($_SESSION['inst_deleted'])) {
                 icon: 'pe-7s-check',
                 message: "<?php echo $_SESSION['inst_deleted'] ?>"
             },{
-                type: 'success',
+                type: 'danger',
                 timer: 4000
             });
 

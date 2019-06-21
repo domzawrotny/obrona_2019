@@ -7,75 +7,73 @@ if (!isSet($_SESSION['signed_in'])) {
     exit();
 }
 
-//if (isSet($_POST[''])) {
-//    header('Location: main_site.php');
-if (isSet($_GET['faculty_id'])) {
+if (isSet($_GET['building'])) {
 //    $faculty_id = $_GET['faculty_id'];
-    $_SESSION['faculty_id'] = $_GET['faculty_id'];
+    $_SESSION['building'] = $_GET['building'];
 }
 
 //}
-if ( (isSet($_POST['institute_name'])) && isSet($_POST['institute_abbrev'])) {
+if ( (isSet($_POST['room_id'])) && isSet($_POST['room_name'])) {
 //    echo strlen($_POST['institute_name']) . "</br>";
-    if (strlen($_POST['institute_name']) > 120  ||  strlen($_POST['institute_name']) < 10 )  {
-        $_SESSION['institute_error'] = 'Nazwa instytutu musi zawierac od 10 do 120 znakow!';
-        $validated = false;
-    }
-    else {
-        $institute_name = $_POST['institute_name'];
-        unset($_SESSION['institute_error']);
-    }
+//    if (strlen($_POST['institute_name']) > 120  ||  strlen($_POST['institute_name']) < 10 )  {
+//        $_SESSION['institute_error'] = 'Nazwa instytutu musi zawierac od 10 do 120 znakow!';
+//        $validated = false;
+//    }
+//    else {
+//        $institute_name = $_POST['institute_name'];
+//        unset($_SESSION['institute_error']);
+//    }
+//
+//    if (strlen($_POST['institute_abbrev']) > 10 || strlen($_POST['institute_abbrev']) < 3 ) {
+//        $_SESSION['institute_abbrev_error'] = 'Skrocona nazwa instytutu musi zawierac od 3 do 10 znakow';
+//        $validated = false;
+//    }
+//    else {
+//        unset($_SESSION['institute_abbrev_error']);
+//        $institute_abbrev = $_POST['institute_abbrev'];
+//        $validated = true;
+//    }
 
-    if (strlen($_POST['institute_abbrev']) > 10 || strlen($_POST['institute_abbrev']) < 3 ) {
-        $_SESSION['institute_abbrev_error'] = 'Skrocona nazwa instytutu musi zawierac od 3 do 10 znakow';
-        $validated = false;
-    }
-    else {
-        unset($_SESSION['institute_abbrev_error']);
-        $institute_abbrev = $_POST['institute_abbrev'];
-        $validated = true;
-    }
+    $validated = true;
 
     if ( $validated == true ) {
 
 
-        $faculty_id = $_SESSION['faculty_id'];
-        if (isSet($faculty_id)) {
-            $db_connection = new DatabaseConnection();
-            $db_connection->establishConnection();
+        $building = $_SESSION['building'];
 
-            if ($db_connection->getCurrentDBConnection()->connect_errno!=0) {
-                echo "Error occured while attempting to connect to the datebase!<br/>";
-                #die;
+        $room_id = $_POST['room_id'];
+        $room_name = $_POST['room_name'];
+
+
+        $db_connection = new DatabaseConnection();
+        $db_connection->establishConnection();
+
+        if ($db_connection->getCurrentDBConnection()->connect_errno != 0) {
+            echo "Error occured while attempting to connect to the datebase!<br/>";
+            #die;
+        }
+        else {
+            $query = "INSERT INTO room (room_id, room_name, PK_bulding_id) VALUES 
+                    (
+                        '$room_id',
+                        '$room_name',
+                        (SELECT building_id FROM building WHERE building_name = '$building')
+                    )";
+
+            echo $query;
+
+            if (!($result_1 = $db_connection->getCurrentDBConnection()->query($query))) {
+                echo "An error occurred in the first query!<br/>";
+            } else {
+                echo "User added!";
+                $_SESSION['room_added'] = 'Sala dodana!';
+                header('Location: rooms.php');
             }
-            else {
-                $query = "INSERT INTO institute (institute_name, institute_abbreviation, FK_faculty_id) VALUES
-                        (
-                            '$institute_name',
-                            '$institute_abbrev',
-                            '$faculty_id'
-                        )";
-
-                if (!($result_1 = $db_connection->getCurrentDBConnection()->query($query))) {
-                    echo "An error occurred in the first query!<br/>";
-                }
-                else {
-                    echo "User added!";
-                    $_SESSION['institute_added'] = 'Instytut dodany!';
-                        header('Location: institutes.php');
-                }
-
-            }
-            $db_connection->dropCurrentConnection();
-
-
-
 
         }
+        $db_connection->dropCurrentConnection();
 
-        // dodanie instytutu do bazki ;pppp
     }
-
 }
 
 ?>
@@ -136,7 +134,7 @@ if ( (isSet($_POST['institute_name'])) && isSet($_POST['institute_abbrev'])) {
                     </a>
                 </li>
                 <li>
-                    <a href="institutes.php ">
+                    <a href="institutes.php">
                         <i class="pe-7s-study"></i>
                         <p>Instytuty</p>
                     </a>
@@ -211,25 +209,32 @@ if ( (isSet($_POST['institute_name'])) && isSet($_POST['institute_abbrev'])) {
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">
-                                    Dodaj instytut
+                                <h4 class="title">Dodaj sale <br/>
+
+                                <?php
+
+                                foreach ($_POST as $key => $value)
+                                    echo $key.'='.$value.'<br />';
+
+                                ?>
                                 </h4>
                             </div>
+
                             <div class="content table-responsive table-full-width">
-                                <form action="new_institute.php" method="post">
+                                <form action="new_room.php" method="post">
                                     <div class="row">
                                         <div class="col-md-4 pl-1">
                                             <div class="form-group">
-                                                <label for="instituteName">Nazwa instytutu</label>
-                                                <input type="text" class="form-control" placeholder="Nazwa instytutu" name="institute_name">
+                                                <label for="room_id">ID Sali</label>
+                                                <input type="text" class="form-control" placeholder="ID Sali" name="room_id">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4 pr-1">
                                             <div class="form-group">
-                                                <label>Skrocona nazwa instytutu</label>
-                                                <input type="text" class="form-control" placeholder="Skroc. nazwa instytutu" name="institute_abbrev">
+                                                <label for="room_name">Nazwa pokoju</label>
+                                                <input type="text" class="form-control" placeholder="Nazwa sali" name="room_name">
                                             </div>
                                         </div>
                                     </div>
@@ -238,8 +243,8 @@ if ( (isSet($_POST['institute_name'])) && isSet($_POST['institute_abbrev'])) {
                                         </div>
 
                                         <div class="col-md-3">
-<!--                                            <a href="new_institute.php"><button type="submit" class="btn btn-info btn-fill pull-right">Utworz instytut</button></a>-->
-                                            <button type="submit" class="btn btn-info btn-fill pull-right">Utworz instytut</button>
+                                            <!--                                            <a href="new_institute.php"><button type="submit" class="btn btn-info btn-fill pull-right">Utworz instytut</button></a>-->
+                                            <button type="submit" class="btn btn-info btn-fill pull-right">Dodaj sale</button>
                                         </div>
                                     </div>
                                     <div class="clearfix"></div>
@@ -250,6 +255,7 @@ if ( (isSet($_POST['institute_name'])) && isSet($_POST['institute_abbrev'])) {
                 </div>
             </div>
         </div>
+
 </body>
 
 <!--   Core JS Files   -->
@@ -269,7 +275,7 @@ if ( (isSet($_POST['institute_name'])) && isSet($_POST['institute_abbrev'])) {
 <script src="assets/js/demo.js"></script>
 
 <?php
-if (isSet($_SESSION['institute_error'])) {
+if (isSet($_SESSION['error'])) {
     ?>
     <script type="text/javascript">
         $(document).ready(function(){
@@ -278,7 +284,7 @@ if (isSet($_SESSION['institute_error'])) {
 
             $.notify({
                 icon: 'pe-7s-close-circle',
-                message: "<?php echo $_SESSION['institute_error'] ?>"
+                message: "<?php echo $_SESSION['error'] ?>"
             },{
                 type: 'danger',
                 timer: 4000
@@ -287,49 +293,9 @@ if (isSet($_SESSION['institute_error'])) {
         });
     </script>
     <?php
+    unset($_SESSION['error']);
 }
 ?>
-<?php
-if (isSet($_SESSION['institute_abbrev_error'])) {
-    ?>
-    <script type="text/javascript">
-        $(document).ready(function(){
 
-            demo.initChartist();
-
-            $.notify({
-                icon: 'pe-7s-close-circle',
-                message: "<?php echo $_SESSION['institute_abbrev_error'] ?>"
-            },{
-                type: 'danger',
-                timer: 4000
-            });
-
-        });
-    </script>
-    <?php
-}
-?>
-<?php
-if (isSet($_SESSION['institute_added'])) {
-    ?>
-    <script type="text/javascript">
-        $(document).ready(function(){
-
-            demo.initChartist();
-
-            $.notify({
-                icon: 'pe-7s-check',
-                message: "<?php echo $_SESSION['institute_added'] ?>"
-            },{
-                type: 'success',
-                timer: 4000
-            });
-
-        });
-    </script>
-    <?php
-}
-?>
 
 </html>
