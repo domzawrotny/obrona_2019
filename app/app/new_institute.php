@@ -9,6 +9,11 @@ if (!isSet($_SESSION['signed_in'])) {
 
 //if (isSet($_POST[''])) {
 //    header('Location: main_site.php');
+if (isSet($_GET['faculty_id'])) {
+//    $faculty_id = $_GET['faculty_id'];
+    $_SESSION['faculty_id'] = $_GET['faculty_id'];
+}
+
 //}
 if ( (isSet($_POST['institute_name'])) && isSet($_POST['institute_abbrev'])) {
 //    echo strlen($_POST['institute_name']) . "</br>";
@@ -31,11 +36,6 @@ if ( (isSet($_POST['institute_name'])) && isSet($_POST['institute_abbrev'])) {
         $validated = true;
     }
 
-    if (isSet($_GET['faculty_id'])) {
-        $_SESSION['faculty_id'] = $_GET['faculty_id'];
-    }
-
-
     if ( $validated == true ) {
 
 
@@ -56,14 +56,20 @@ if ( (isSet($_POST['institute_name'])) && isSet($_POST['institute_abbrev'])) {
                             '$faculty_id'
                         )";
 
-
-//                $result = $db_connection->getCurrentDBConnection()->query($query);
+                if (!($result_1 = $db_connection->getCurrentDBConnection()->query($query))) {
+                    echo "An error occurred in the first query!<br/>";
+                }
+                else {
+                    echo "User added!";
+                    $_SESSION['institute_added'] = 'Instytut dodany!';
+                        header('Location: institutes.php');
+                }
 
             }
             $db_connection->dropCurrentConnection();
 
-            $_SESSION['institute_added'] = 'Instytut dodany!';
-//            header('Location: institutes.php');
+
+
 
         }
 
@@ -130,7 +136,7 @@ if ( (isSet($_POST['institute_name'])) && isSet($_POST['institute_abbrev'])) {
                     </a>
                 </li>
                 <li>
-                    <a href="institutes.php">
+                    <a href="institutes.php ">
                         <i class="pe-7s-study"></i>
                         <p>Instytuty</p>
                     </a>
@@ -206,8 +212,7 @@ if ( (isSet($_POST['institute_name'])) && isSet($_POST['institute_abbrev'])) {
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">
-                                    Dodaj instytut
-                                    <?php echo $query ?>
+                                    Dodaj <instytut></instytut>
                                 </h4>
                             </div>
                             <div class="content table-responsive table-full-width">

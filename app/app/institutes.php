@@ -191,7 +191,7 @@
                                             <div class="col-md-3">
                                                 <label>Zatwierdź</label>
                                                 <!--                                            <input type="button" class="btn btn-info btn-fill btn-block pull-right" value="Potwierdź" >-->
-                                                <a href="validate_exam.php"><button type="submit" class="btn btn-info btn-fill btn-block pull-right">Potwierdz</button></a>
+                                                <a href="validate_exam.php"><button type="submit" class="btn btn-success btn-fill btn-block pull-right">Potwierdz</button></a>
                                             </div>
 
                                 </div>
@@ -220,6 +220,7 @@
 
                                                     <?php
                                                     if (isSet($faculty)) {
+                                                        unset($_SESSION['institute_added']);
                                                         $db_connection = new DatabaseConnection();
                                                         $db_connection->establishConnection();
 
@@ -290,14 +291,14 @@
                                                                             <td>
                                                                                 <!--                                                        <a href="">Usuń</a>-->
                                                                                 <div class="col-md-5">
-                                                                                    <button type="submit" class="btn btn-info btn-fill btn-block" onclick="location.href='manage_employees.php?institute_id=<?php echo $row['PK_institute_id'] ?>'">Zarzadzaj pracownikami</button>
+                                                                                    <button type="submit" class="btn btn-info btn-fill btn-block" onclick="location.href='manage_employees.php?institute_id=<?php echo $row['PK_institute_id'] ?>'"> Zarzadzaj pracownikami</button>
                                                                                 </div>
 
                                                                                 <div class="col-sm-1">
                                                                                 </div>
                                                                                 <!--                                                        <a href="">Usuń</a>-->
                                                                                 <div class="col-md-3">
-                                                                                    <button type="submit" class="btn btn-info btn-fill btn-block" onclick="location.href='delete_institute.php?institute_id=<?php echo $row['PK_institute_id'] ?>'">Usun instytut</button>
+                                                                                    <button type="submit" class="btn btn-danger btn-fill btn-block" onclick="location.href='delete_institute.php?institute_id=<?php echo $row['PK_institute_id'] ?>'">  Usun instytut</button>
                                                                                 </div>
 
                                                                             </td>
@@ -413,6 +414,28 @@ if (isSet($_SESSION['institute_added'])) {
             $.notify({
                 icon: 'pe-7s-check',
                 message: "<?php echo $_SESSION['institute_added'] ?>"
+            },{
+                type: 'success',
+                timer: 4000
+            });
+
+        });
+    </script>
+    <?php
+}
+?>
+
+<?php
+if (isSet($_SESSION['inst_deleted'])) {
+    ?>
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            demo.initChartist();
+
+            $.notify({
+                icon: 'pe-7s-check',
+                message: "<?php echo $_SESSION['inst_deleted'] ?>"
             },{
                 type: 'success',
                 timer: 4000
