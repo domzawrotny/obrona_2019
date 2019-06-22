@@ -1,18 +1,12 @@
 <?php
-    session_start();
-    header( 'Cache-Control: no-store, no-cache, must-revalidate' );
-    header( 'Cache-Control: post-check=0, pre-check=0', false );
-    header( 'Pragma: no-cache' );
-    if (!isSet($_SESSION['signed_in']) && ( $_SESSION['permissions'] != 1 )) {
-        header('Location: index.php');
-        exit();
-    }
-    if(isSet($_SESSION['user_added']) ) {
-        header("Refresh:0");
-        unset($_SESSION['user_added']);
-    }
-?>
+session_start();
+require_once ('connect.php');
 
+if (!isSet($_SESSION['signed_in'])) {
+    header('Location: index.php');
+    exit();
+}
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -49,7 +43,6 @@
 <div class="wrapper">
     <div class="sidebar" data-color="green" data-image="assets/img/sidebar-5.jpg">
 
-
         <div class="sidebar-wrapper">
             <div class="logo">
                 <a href="index.php" class="simple-text">
@@ -65,31 +58,31 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="personel.php">
                         <i class="pe-7s-id"></i>
                         <p>Personel</p>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="institutes.php">
                         <i class="pe-7s-study"></i>
                         <p>Instytuty</p>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="rooms.php">
                         <i class="pe-7s-door-lock"></i>
                         <p>Sale</p>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="buildings.php">
                         <i class="pe-7s-home"></i>
                         <p>Budynki</p>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="profile.php">
                         <i class="pe-7s-user"></i>
                         <p>Twój profil</p>
                     </a>
@@ -140,71 +133,22 @@
                 </div>
             </div>
         </nav>
-
-
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Dodaj nowego studenta</h4>
+                                <h4 class="title">Dodaj instytut</h4>
                             </div>
-                            <div class ="content table-responsive table-full-width">
-                                <div id="content">
 
-                                    <form action="new_student.php" method="post" id="add_new_user_form">
-                                        <b>Firstname: </b><br/>
-                                        <input type="text" name="firstname" value="" size="30"><br/>
-                                        <b>Surname: </b><br/>
-                                        <input type="text" name="surname" value="" size="30"><br/>
-                                        <b>PESEL: </b><br/>
-                                        <input type="text" name="pesel" value="" size="30" maxlength="11"><br/>
-                                        <b>Password:</b><br/>
-                                        <input type="password" name="user_password" value="" size="30"><br/>
-                                        <b>Repeat password:</b><br/>
-                                        <input type="password" name="r_user_password" value="" size="30"><br/>
-                                        <b>City:</b><br/>
-                                        <input type="text" name="city" value="" size="30" maxlength="20"><br/>
-                                        <b>Street:</b><br/>
-                                        <input type="text" name="street" value="" size="30" maxlength="20"><br/>
-                                        <b>House no:</b><br/>
-                                        <input type="text" name="house_no" value="" size="30" maxlength="4"><br/><br/>
-
-                                            &nbsp;&nbsp; <a href="new_student.php"><button type="submit" class="btn btn-info btn-fill">Dodaj studenta</button></a>
-
-                                    </form>
-
-                                </div>
+                            <div class="content table-responsive table-full-width">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
-        <footer class="footer">
-            <div class="container-fluid">
-                <nav class="pull-left">
-                    <ul>
-                        <li>
-                            <a href="#">
-                                Home
-                            </a>
-                        </li>
-
-                    </ul>
-                </nav>
-                <p class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script> <a href="https://www.uz.zgora.pl/">Uniwersytet Zielonogórski</a>
-                </p>
-            </div>
-        </footer>
-
-    </div>
-</div>
-
 
 </body>
 
@@ -225,26 +169,7 @@
 <script src="assets/js/demo.js"></script>
 
 <?php
-    if (isSet($_SESSION['error'])) {
-    ?>
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-            demo.initChartist();
-
-            $.notify({
-                icon: 'pe-7s-close-circle',
-                message: "<?php echo $_SESSION['error'] ?>"
-            }, {
-                type: 'danger',
-                timer: 4000
-            });
-
-        });
-    </script>
-    <?php
-    }
-    if(isSet($_SESSION['p_error'])) {
+if (isSet($_SESSION['error'])) {
     ?>
     <script type="text/javascript">
         $(document).ready(function(){
@@ -253,7 +178,7 @@
 
             $.notify({
                 icon: 'pe-7s-close-circle',
-                message: "<?php echo $_SESSION['p_error'] ?>"
+                message: "<?php echo $_SESSION['error'] ?>"
             },{
                 type: 'danger',
                 timer: 4000
@@ -261,69 +186,9 @@
 
         });
     </script>
-        <?php
-//        unset($_SESSION['p_error']);
-    }
-    if(isSet($_SESSION['pesel_error'])) {
-        ?>
-        <script type="text/javascript">
-            $(document).ready(function(){
-
-                demo.initChartist();
-
-                $.notify({
-                    icon: 'pe-7s-close-circle',
-                    message: "<?php echo $_SESSION['pesel_error'] ?>"
-                },{
-                    type: 'danger',
-                    timer: 4000
-                });
-
-            });
-        </script>
-        <?php
-//        unset($_SESSION['pesel_error']);
-    }
-    if(isSet($_SESSION['firstname_error'])) {
-        ?>
-        <script type="text/javascript">
-            $(document).ready(function(){
-
-                demo.initChartist();
-
-                $.notify({
-                    icon: 'pe-7s-close-circle',
-                    message: "<?php echo $_SESSION['firstname_error'] ?>"
-                },{
-                    type: 'danger',
-                    timer: 4000
-                });
-
-            });
-        </script>
-        <?php
-//        unset($_SESSION['firstname_error']);
-    }
-    if(isSet($_SESSION['surname_error'])) {
-        ?>
-        <script type="text/javascript">
-            $(document).ready(function(){
-
-                demo.initChartist();
-
-                $.notify({
-                    icon: 'pe-7s-close-circle',
-                    message: "<?php echo $_SESSION['surname_error'] ?>"
-                },{
-                    type: 'danger',
-                    timer: 4000
-                });
-
-            });
-        </script>
-        <?php
-//        unset($_SESSION['surname_error']);
-    }
+    <?php
+    unset($_SESSION['error']);
+}
 ?>
 
 

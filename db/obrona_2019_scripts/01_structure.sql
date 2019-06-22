@@ -18,6 +18,19 @@ PRIMARY KEY (`faculty_id`)
 );
 
 
+CREATE TABLE `INSTITUTE`
+(
+    `PK_institute_id`           INT NOT NULL AUTO_INCREMENT ,
+    `institute_name`            VARCHAR(120) NOT NULL ,
+    `institute_abbreviation`    VARCHAR(10) NOT NULL ,
+    `FK_faculty_id`             INT NOT NULL ,
+
+    PRIMARY KEY (`PK_institute_id`) ,
+    KEY `fkIdx_2710` (`FK_faculty_id`),
+    CONSTRAINT `FK_2710` FOREIGN KEY `fkIdx_2710` (`FK_faculty_id`) REFERENCES `FACULTY` (`faculty_id`)
+
+);
+
 CREATE TABLE `STUDY_DEGREE`
 (
  `study_degree_id`   INT NOT NULL AUTO_INCREMENT,
@@ -95,6 +108,7 @@ CREATE TABLE `LECTURER`
  `house_no`                 VARCHAR(5) ,
  `birth_date`               DATE NOT NULL ,
  `login_id`                 INT NOT NULL ,
+ `FK_institute_id`          INT NOT NULL ,
  `independent_employee`     BOOLEAN NOT NULL ,
 
 PRIMARY KEY (`lecturer_id`),

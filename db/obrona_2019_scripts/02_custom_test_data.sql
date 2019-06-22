@@ -35,6 +35,25 @@ INSERT INTO faculty (faculty_name, faculty_abbreviation) VALUES
   ('Wydzial Prawa i Administracji','WPA');
   -- ('Wydzial Zamiejscowy w Sulechowie','WZ');
 
+
+
+INSERT INTO institute (institute_name, institute_abbreviation, FK_faculty_id) VALUES
+(
+    'Instytut Metrologii, Elektroniki i Informatyki',
+    'IMEI',
+    (SELECT faculty_id FROM faculty WHERE faculty_abbreviation = 'WIEA')
+),
+(
+    'Instytut Inzynierii Elektrycznej',
+    'IIE',
+    (SELECT faculty_id FROM faculty WHERE faculty_abbreviation = 'WIEA')
+),
+                                                                                     (
+    'Instytut Sterowania i Systemow Informatycznych',
+    'ISSI',
+    (SELECT faculty_id FROM faculty WHERE faculty_abbreviation = 'WIEA')
+);
+
 # INSERT INTO student_group (student_group_name, degree_course_id, study_degree_id, study_type_id)  VALUES
 # 		(
 # 		  '31INF-ISM-NP',
